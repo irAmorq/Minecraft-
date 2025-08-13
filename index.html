@@ -1,263 +1,128 @@
 <!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>دانلود ماینکرافت بدراک</title>
-
-  <!-- فونت لاله‌زار -->
-  <link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --green:#4CAF50;
-      --orange:#FF9800;
-      --muted:#ccc;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دانلود ماینکرافت</title>
+<style>
+    body {
+        margin: 0;
+        background-color: #0f172a;
+        color: white;
+        font-family: "Vazirmatn", sans-serif;
+        overflow: hidden;
     }
-    body{
-      font-family: Arial, sans-serif;
-      background: linear-gradient(135deg, #0d1421, #1a1a2e);
-      color:#fff;
-      margin:0;
-      padding:20px;
-      min-height:100vh;
-      overflow-x:hidden; /* عمودی فعال */
-      position:relative;
+    h1 {
+        color: #22c55e;
+        text-align: center;
+        margin-top: 20px;
     }
-
-    /* لایهٔ انیمیشن آیتم‌ها */
-    .sky{
-      position:fixed; inset:0; pointer-events:none; z-index:1; overflow:hidden;
+    .card {
+        background-color: #1e293b;
+        border-radius: 15px;
+        padding: 15px;
+        max-width: 350px;
+        margin: 20px auto;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.3);
     }
-    .fly{
-      position:absolute; will-change:transform,opacity; filter:drop-shadow(0 6px 12px rgba(0,0,0,.45));
-      width:24px; height:auto; opacity:.6; user-select:none;
+    .download-btn {
+        display: inline-block;
+        background: url('https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk') center/cover no-repeat;
+        border-radius: 10px;
+        padding: 0;
+        width: 220px;
+        height: 65px;
+        overflow: hidden;
     }
-
-    .container{ max-width:800px; margin:0 auto; position:relative; z-index:10; }
-
-    .header{ text-align:center; padding:30px 0; border-bottom:3px solid var(--green); margin-bottom:32px; }
-    .title{ font-family:"Lalezar", system-ui; font-size:40px; color:var(--green); margin:0 0 6px; }
-    .subtitle{ font-size:18px; color:var(--muted); margin:0 0 6px; }
-
-    /* کارت دانلود (کوتاه‌تر) */
-    .download-box{
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.20);
-      border-radius: 14px;
-      padding: 18px 16px; /* کوتاه‌تر از قبل */
-      margin-bottom: 28px;
-      transition: background .25s ease, transform .25s ease;
+    .download-btn img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
-    .download-box:hover{ background: rgba(255,255,255,0.14); transform: translateY(-3px); }
-
-    .download-content{
-      display:flex; flex-direction:column; align-items:center; gap:6px; margin-bottom:10px;
+    canvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        pointer-events: none;
     }
-    .version-name{
-      font-family:"Lalezar", system-ui; font-size:28px; color:var(--green); text-align:center;
-    }
-    .version-details{ color:var(--muted); font-size:15px; text-align:center; }
-
-    .download-btn-container{ text-align:center; }
-    /* فقط خود تصویر کلیک شود */
-    .download-btn-image{
-      width:260px; /* بزرگ‌تر */
-      max-width:70vw;
-      height:92px; /* نسبت 1:1 رو با کراپ تبدیل می‌کنیم */
-      object-fit:cover; object-position:center; /* کراپ نرم */
-      border-radius:10px; display:inline-block; cursor:pointer;
-      box-shadow:0 8px 20px rgba(0,0,0,.35);
-      transition: transform .18s ease;
-    }
-    .download-btn-image:hover{ transform: translateY(-2px) scale(1.02); }
-
-    .separator{ height:3px; background:var(--green); margin:28px 0; border-radius:2px; }
-
-    .eitaa-box{
-      background: rgba(255,255,255,0.10);
-      border:2px solid var(--orange);
-      border-radius:15px;
-      padding:18px;
-      display:flex; align-items:center; gap:14px;
-      text-decoration:none; color:#fff; margin-bottom:32px;
-      transition: background .25s ease, transform .2s ease;
-    }
-    .eitaa-box:hover{ background: rgba(255,255,255,0.14); transform: translateY(-3px); }
-    .eitaa-image{ width:80px; height:80px; border-radius:8px; border:2px solid var(--orange); object-fit:cover; }
-    .eitaa-text{ font-family:"Lalezar", system-ui; font-size:24px; color:var(--orange); }
-
-    .footer{ text-align:center; padding:18px 0; border-top:1px solid rgba(255,255,255,0.20); color:var(--muted); font-size:14px; }
-  </style>
+</style>
 </head>
 <body>
 
-  <!-- لایهٔ انیمیشن ملایم -->
-  <div class="sky" id="sky"></div>
+<canvas id="bg"></canvas>
 
-  <div class="container">
-    <div class="header">
-      <h1 class="title">دانلود ماینکرافت بدراک</h1>
-      <p class="subtitle">دانلود نسخه‌های ماینکرافت بدون موسیقی</p>
-    </div>
+<h1>دانلود ماینکرافت بدراک</h1>
 
-    <!-- باکس دانلود: متن وسط و کوتاه‌تر، فقط عکس کلیک می‌شود -->
-    <div class="download-box">
-      <div class="download-content">
-        <div class="version-name">ماینکرافت 1.21.100</div>
-        <!-- طبق خواسته: خط «آخرین نسخه رسمی • اندروید» حذف شد -->
-        <div class="version-details">حجم: 303 مگابایت</div>
-      </div>
-      <div class="download-btn-container">
-        <a href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk" target="_blank" rel="noopener">
-          <!-- تصویر 1:1 با کراپ نرم، فقط همین کلیک‌پذیر است -->
-          <img
-            src="https://uploadkon.ir/uploads/255b13_25Negar-1755081442153.png"
-            alt="دانلود"
-            class="download-btn-image">
-        </a>
-      </div>
-    </div>
-
-    <div class="separator"></div>
-
-    <!-- ایتا (همون قبلی با تصویر جدید) -->
-    <a href="https://eitaa.com/Minecraft_Addons" class="eitaa-box" target="_blank" rel="noopener">
-      <img src="https://uploadkon.ir/uploads/eaf613_25IMG-%DB%B2%DB%B0%DB%B2%DB%B5%DB%B0%DB%B8%DB%B1%DB%B3-%DB%B1%DB%B2%DB%B1%DB%B3%DB%B0%DB%B2.png"
-           alt="ماینکرافت آدونز" class="eitaa-image">
-      <div class="eitaa-text">ماینکرافت آدونز در ایتا</div>
+<div class="card">
+    <h2>ماینکرافت 1.21.100</h2>
+    <p>حجم: 303 مگابایت</p>
+    <a class="download-btn" href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk">
+        <img src="https://i.ibb.co/3kK3nQf/download-btn.png" alt="دانلود">
     </a>
+</div>
 
-    <div class="footer">
-      <p>© 2022 ماینکرافت آدونز - تمامی حقوق محفوظ است</p>
-    </div>
-  </div>
+<script>
+const canvas = document.getElementById("bg");
+const ctx = canvas.getContext("2d");
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
-  <!-- آهنگ‌ها: پشت‌سر هم، بی‌نهایت -->
-  <audio id="musicA" preload="auto" src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(2).mp3" playsinline></audio>
-  <audio id="musicB" preload="auto" src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(4).mp3" playsinline></audio>
+const images = [
+    // Pickaxes
+    "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png?8a6ea",
+    "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png?3b91b&format=original",
+    "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original",
+    "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original",
+    "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png?36cb3&format=original",
+    "https://minecraft.wiki/images/Golden_Pickaxe_JE3_BE2.png?2e133&format=original",
+    // Axes
+    "https://minecraft.wiki/images/Netherite_Axe_JE2.png?52d88&format=original",
+    "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original",
+    "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png?5b5c3&format=original",
+    "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png?014ea&format=original",
+    "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png?d33a8&format=original",
+    "https://minecraft.wiki/images/Wooden_Axe_JE2_BE2.png?ff0b9&format=original",
+    "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png?2e133&format=original",
+    // Swords
+    "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png?8e866&format=original",
+    "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original",
+    "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png?315d2&format=original",
+    "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png?62770&format=original",
+    "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png?d003e&format=original",
+    "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png?065ee&format=original",
+    "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png?0ea76&format=original"
+];
 
-  <script>
-    /* ============== 1) پاکسازی هر انیمیشن/عکس خراب قبلی (در صورت وجود) ============== */
-    // اگر قبلاً کلاس‌ها/المان‌های شناور بود، حذفشان کن
-    document.querySelectorAll('.floating-tool, [class*="tool-"]').forEach(e=>e.remove());
+const items = [];
+for (let i = 0; i < 30; i++) {
+    const img = new Image();
+    img.src = images[Math.floor(Math.random() * images.length)];
+    items.push({
+        img: img,
+        x: Math.random() * canvas.width,
+        y: Math.random() * canvas.height,
+        size: 35 + Math.random() * 20,
+        dx: (Math.random() - 0.5) * 2,
+        dy: (Math.random() - 0.5) * 2
+    });
+}
 
-    /* ============== 2) انیمیشن جدید آیتم‌ها با حرکت ملایم ============== */
-    // فقط لینک‌های مستقیم PNG — لینک‌های صفحه ("/w/File" یا "/w/Golden_Pickaxe") حذف شدند تا خراب نشوند
-    const ASSETS = [
-      // Pickaxes
-      "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png?8a6ea",
-      "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png?3b91b&format=original",
-      "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original",
-      "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original",
-      "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png?36cb3&format=original",
-      // Axes
-      "https://minecraft.wiki/images/Netherite_Axe_JE2.png?52d88&format=original",
-      "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original",
-      "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png?5b5c3&format=original",
-      "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png?014ea&format=original",
-      "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png?d33a8&format=original",
-      "https://minecraft.wiki/images/Wooden_Axe_JE2_BE2.png?ff0b9&format=original",
-      "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png?2e133&format=original",
-      // Swords
-      "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png?8e866&format=original",
-      "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original",
-      "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png?315d2&format=original",
-      "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png?62770&format=original",
-      "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png?d003e&format=original",
-      "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png?065ee&format=original",
-      "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png?0ea76&format=original",
-    ];
-
-    const sky = document.getElementById('sky');
-    const MAX_ON_SCREEN = 60;   // برای کارایی
-    const SPAWN_MS = 350;       // ملایم
-    const SIZE_MIN = 22, SIZE_MAX = 28; // کوچک
-
-    function r(min,max){ return Math.random()*(max-min)+min; }
-    function pick(arr){ return arr[(Math.random()*arr.length)|0]; }
-
-    function spawnOne(){
-      if(sky.childElementCount >= MAX_ON_SCREEN) return;
-
-      const img = new Image();
-      img.className = 'fly';
-      img.decoding = 'async';
-      img.loading = 'lazy';
-      img.src = pick(ASSETS);
-
-      const vw = Math.max(document.documentElement.clientWidth,  window.innerWidth||0);
-      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight||0);
-      const size = r(SIZE_MIN, SIZE_MAX);
-      img.style.width = size + 'px';
-
-      const edge = pick(['left','right','top','bottom']);
-      const margin = 80;
-
-      let x0,y0,x1,y1;
-      if(edge==='left'){   x0=-margin-size; y0=r(-margin, vh+margin); x1=vw+margin;    y1=y0+r(-vh*.4, vh*.4); }
-      if(edge==='right'){  x0=vw+margin;    y0=r(-margin, vh+margin); x1=-margin-size; y1=y0+r(-vh*.4, vh*.4); }
-      if(edge==='top'){    x0=r(-margin, vw+margin); y0=-margin-size; x1=x0+r(-vw*.4, vw*.4); y1=vh+margin; }
-      if(edge==='bottom'){ x0=r(-margin, vw+margin); y0=vh+margin;    x1=x0+r(-vw*.4, vw*.4); y1=-margin-size; }
-
-      // نقاط میانی برای منحنی ملایم
-      const mx1 = (2*x0 + x1)/3 + r(-70,70);
-      const my1 = (2*y0 + y1)/3 + r(-70,70);
-      const mx2 = (x0 + 2*x1)/3 + r(-70,70);
-      const my2 = (y0 + 2*y1)/3 + r(-70,70);
-
-      const rot0 = r(-20,20);
-      const rot1 = rot0 + r(-140,140);
-
-      img.style.transform = `translate(${x0}px, ${y0}px) rotate(${rot0}deg)`;
-      img.style.opacity = '0';
-      sky.appendChild(img);
-
-      const dur = r(14000, 22000); // آرام‌تر
-      const keyframes = [
-        { transform:`translate(${x0}px, ${y0}px) rotate(${rot0}deg)`, opacity:0 },
-        { transform:`translate(${mx1}px, ${my1}px) rotate(${(rot0+rot1)/2}deg)`, opacity:.85, offset:.33 },
-        { transform:`translate(${mx2}px, ${my2}px) rotate(${(rot0+rot1)/1.4}deg)`, opacity:.85, offset:.66 },
-        { transform:`translate(${x1}px, ${y1}px) rotate(${rot1}deg)`, opacity:0 }
-      ];
-
-      const anim = img.animate(keyframes, { duration: dur, easing: 'linear' });
-      anim.onfinish = ()=> img.remove();
+function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    for (let item of items) {
+        ctx.drawImage(item.img, item.x, item.y, item.size, item.size);
+        item.x += item.dx;
+        item.y += item.dy;
+        if (item.x < -50) item.x = canvas.width + 50;
+        if (item.x > canvas.width + 50) item.x = -50;
+        if (item.y < -50) item.y = canvas.height + 50;
+        if (item.y > canvas.height + 50) item.y = -50;
     }
+    requestAnimationFrame(animate);
+}
+animate();
+</script>
 
-    // شروع تولید
-    setInterval(spawnOne, SPAWN_MS);
-    // موج اولیه
-    for(let i=0;i<28;i++) setTimeout(spawnOne, i*140);
-
-    /* ============== 3) آهنگ‌ها: پشت‌سر هم و بی‌نهایت ============== */
-    const a = document.getElementById('musicA');
-    const b = document.getElementById('musicB');
-
-    function chain(){
-      a.currentTime = 0; b.currentTime = 0;
-      a.onended = ()=>{ b.play().catch(()=>{}); };
-      b.onended = ()=>{ a.play().catch(()=>{}); };
-      // تلاش برای جلوگیری از توقف دستی
-      a.onpause = ()=>{ a.play().catch(()=>{}); };
-      b.onpause = ()=>{ b.play().catch(()=>{}); };
-    }
-    chain();
-
-    (async ()=>{
-      try{
-        a.muted = true; b.muted = true;      // برای اجازه‌ی autoplay
-        await a.play();
-        setTimeout(()=>{ a.muted=false; b.muted=false; }, 1200);
-      }catch(e){
-        // اگر مرورگر صدا را بلاک کرد، با اولین تعامل کاربر شروع کن
-        const kick = ()=>{
-          a.play().catch(()=>{});
-          document.removeEventListener('pointerdown', kick);
-        };
-        document.addEventListener('pointerdown', kick, { once:true });
-      }
-    })();
-  </script>
 </body>
 </html>
