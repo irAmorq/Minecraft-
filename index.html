@@ -1,83 +1,123 @@
-<!DOCTYPE html><html lang="fa">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دانلود ماینکرافت 1.21.100</title>
-<style>
-  body {
-    margin: 0;
-    background: #111;
-    overflow: hidden;
-    font-family: sans-serif;
-    color: white;
-  }
-  .bg-item {
-    position: absolute;
-    width: 40px;
-    height: 40px;
-    animation: move 20s linear infinite;
-  }
-  @keyframes move {
-    from { transform: translateY(-50px); }
-    to { transform: translateY(110vh); }
-  }
-  .download-section {
-    position: relative;
-    z-index: 10;
-    text-align: center;
-    padding: 50px;
-  }
-  .download-section img {
-    max-width: 200px;
-    display: block;
-    margin: 0 auto 20px;
-  }
-  .download-section a {
-    display: inline-block;
-    padding: 12px 25px;
-    background: #4CAF50;
-    color: white;
-    border-radius: 25px;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  .eitaa {
-    margin-top: 40px;
-    display: inline-block;
-    padding: 12px 25px;
-    background: #FF9800;
-    color: white;
-    border-radius: 15px;
-    text-decoration: none;
-  }
-</style>
-</head>
-<body>
-  <script>
-    const tools = [
-  'https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original',
-  'https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original',
-  'https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original',
-  'https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png?62770&format=original',
-  'https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png?d003e&format=original',
-  'https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original',
-  'https://minecraft.wiki/images/Diamond_Shovel_JE3_BE3.png?fd904&format=original'
-];
-    for(let i=0; i<30; i++) {
-      const img = document.createElement('img');
-      img.src = tools[Math.floor(Math.random()*tools.length)];
-      img.className = 'bg-item';
-      img.style.left = Math.random()*100+'vw';
-      img.style.animationDuration = (10 + Math.random()*20)+'s';
-      document.body.appendChild(img);
-    }
-  </script>  <div class="download-section">
-    <img src="https://uploadkon.ir/uploads/6fd713_25Negar-1755081442153.png" alt="ماینکرافت 1.21.100">
-    <h2>ماینکرافت 1.21.100 - حجم: 303 مگابایت</h2>
-    <a href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk">دانلود</a>
-    <div>
-      <a class="eitaa" href="#">ماینکرافت آدونز در ایتا</a>
+<!doctype html>
+
+<html lang="fa" dir="rtl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>وبسایت من</title>
+    <meta name="description" content="یک قالب ساده و واکنش‌گرا برای استقرار در GitHub Pages"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <style>
+      :root{
+        --bg:#0f172a;
+        --card:#111827ee;
+        --text:#e5e7eb;
+        --muted:#94a3b8;
+        --accent:#22c55e;
+      }
+      html,body{margin:0;height:100%;}
+      body{font-family:"Vazirmatn", system-ui, sans-serif;background:radial-gradient(1200px 600px at 80% -10%, #1e293b, transparent), radial-gradient(1200px 600px at -20% 110%, #1f2937, transparent), var(--bg); color:var(--text); overflow:hidden; position:relative;}
+      a{color:inherit}
+      .container{max-width:1000px;margin:0 auto;padding:24px;position:relative;z-index:10}
+      header{display:flex;gap:16px;align-items:center;justify-content:space-between;padding:20px 0}
+      .brand{display:flex;align-items:center;gap:12px}
+      .logo{width:42px;height:42px;border-radius:12px;background:linear-gradient(135deg,#10b981,#22c55e);display:grid;place-items:center;box-shadow:0 10px 30px #10b98133}
+      .logo span{font-weight:800;color:#052e1a}
+      nav{display:flex;gap:12px;flex-wrap:wrap}
+      .btn{border:1px solid #334155;background:#0b1222; color:var(--text);padding:10px 14px;border-radius:14px;cursor:pointer;transition:.2s ease; text-decoration:none}
+      .btn:hover{transform:translateY(-1px); border-color:#475569}
+      .btn-primary{background:linear-gradient(135deg,#16a34a,#22c55e); color:#052e1a; border:none; box-shadow:0 10px 30px #16a34a3d}
+      .card{background:linear-gradient(180deg, #0b1222dd, #0b1222bb); border:1px solid #1f2937; border-radius:24px; padding:22px; box-shadow:0 10px 30px #00000033; text-align:center}
+      footer{padding:36px 0;color:#94a3b8;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+      .floating-item{position:fixed;top:0;left:0;pointer-events:none;z-index:1;will-change:transform;}
+      .download-btn img{width:100px;height:100px;display:block;margin:auto;cursor:pointer}
+      .social-link img{width:40px;height:40px;display:block}
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <header>
+        <div class="brand">
+          <div class="logo"><span>⚡</span></div>
+          <div>
+            <div style="font-weight:800">وبسایت من</div>
+            <div style="font-size:12px;color:#94a3b8">قالب مینیمال برای GitHub Pages</div>
+          </div>
+        </div>
+        <nav>
+          <a class="btn" href="#">امکانات</a>
+          <a class="btn" href="#">راهنما</a>
+          <a class="btn btn-primary" href="#">ارتباط</a>
+        </nav>
+      </header>
+      <section class="card">
+        <h1>سلام دنیا</h1>
+        <p>این سایت با افکت‌های شناور ماینکرافت ساخته شده است.</p>
+        <div class="download-btn">
+          <a href="YOUR_DOWNLOAD_LINK" target="_blank">
+            <img src="https://uploadkon.ir/uploads/eaf613_25IMG-۲۰۲۵۰۸۱۳-۱۲۱۳۰۲.png" alt="دانلود" />
+          </a>
+        </div>
+      </section>
+      <footer>
+        <div>ساخته‌شده با ❤</div>
+        <div class="social-link">
+          <a href="YOUR_ETA_LINK" target="_blank">
+            <img src="https://uploadkon.ir/uploads/eaf613_25IMG-۲۰۲۵۰۸۱۳-۱۲۱۳۰۲.png" alt="ایتــا" />
+          </a>
+        </div>
+      </footer>
     </div>
-  </div>
-</body>
+    <script>
+      document.querySelector('#year')?.textContent = new Date().getFullYear();
+      const images = [
+        "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png?8a6ea",
+        "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png?3b91b&format=original",
+        "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original",
+        "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original",
+        "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png?36cb3&format=original",
+        "https://minecraft.wiki/images/Netherite_Axe_JE2.png?52d88&format=original",
+        "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original",
+        "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png?5b5c3&format=original",
+        "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png?014ea&format=original",
+        "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png?d33a8&format=original",
+        "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png?2e133&format=original",
+        "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png?8e866&format=original",
+        "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original",
+        "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png?315d2&format=original",
+        "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png?62770&format=original",
+        "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png?d003e&format=original",
+        "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png?065ee&format=original",
+        "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png?0ea76&format=original"
+      ];
+      function spawnFloatingItem(){
+        const img = document.createElement('img');
+        img.src = images[Math.floor(Math.random()*images.length)];
+        img.className = 'floating-item';
+        const size = Math.random()*40+30;
+        img.style.width = size+'px';
+        const fromLeft = Math.random()<0.5;
+        const startX = fromLeft ? -size : window.innerWidth + size;
+        const endX = fromLeft ? window.innerWidth + size : -size;
+        const startY = Math.random()*window.innerHeight*0.8;
+        const duration = Math.random()*10+8;
+        img.style.top = startY+'px';
+        img.style.left = startX+'px';
+        document.body.appendChild(img);
+        img.animate([
+          { transform: `translateX(0px)` },
+          { transform: `translateX(${endX - startX}px)` }
+        ], {
+          duration: duration*1000,
+          easing: 'linear'
+        });
+        setTimeout(()=>{
+          img.remove();
+        }, duration*1000);
+      }
+      setInterval(spawnFloatingItem, 800);
+    </script>
+  </body>
 </html>
