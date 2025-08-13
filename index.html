@@ -2,157 +2,139 @@
 <html lang="fa">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>ماین کرافت</title>
-<link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
 <style>
-  body {
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    font-family: 'Lalezar', cursive;
-    background-color: #f0f0f0;
-  }
+    @import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
 
-  .floating-item {
-    position: absolute;
-    will-change: transform;
-    pointer-events: none;
-    z-index: 1000;
-  }
+    html, body {
+        margin: 0;
+        padding: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: 'Lalezar', cursive;
+        background: #1e1e1e;
+    }
 
-  .download-box {
-    position: relative;
-    width: 300px;
-    margin: 50px auto;
-    padding: 20px;
-    background: #fff;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-  }
+    #floating-container img {
+        position: absolute;
+        width: 50px;
+        height: 50px;
+        pointer-events: none;
+        user-select: none;
+    }
 
-  .download-box img {
-    width: 100px;
-    margin-top: 10px;
-    cursor: pointer;
-  }
+    .download-box {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: rgba(0,0,0,0.7);
+        padding: 20px;
+        text-align: center;
+        border-radius: 15px;
+        color: white;
+    }
 
-  .download-box p {
-    margin: 10px 0 0 0;
-  }
+    .download-box img {
+        width: 150px;
+        margin-top: 10px;
+        cursor: pointer;
+    }
 
-  .center-text {
-    text-align: center;
-  }
+    .download-box p {
+        margin: 0;
+        font-size: 24px;
+    }
 </style>
 </head>
 <body>
 
+<div id="floating-container"></div>
+
 <div class="download-box">
-  <h2 class="center-text">دانلود ماین کرافت ۱.۲۱.۱۰۰</h2>
-  <p class="center-text">حجم: 500MB</p>
-  <a href="https://example.com/download" target="_blank">
-    <img src="https://uploadkon.ir/uploads/8a4513_25Negar-1755081442153.png" alt="دانلود">
-  </a>
+    <p>دانلود ماین کرافت ۱.۲۱.۱۰۰</p>
+    <a href="https://uploadkon.ir/uploads/8a4513_25Negar-1755081442153.png" target="_blank">
+        <img src="https://uploadkon.ir/uploads/8a4513_25Negar-1755081442153.png" alt="دانلود">
+    </a>
 </div>
 
 <audio autoplay loop>
-  <source src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(2).mp3" type="audio/mpeg">
-  <source src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(4).mp3" type="audio/mpeg">
+    <source src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(2).mp3" type="audio/mpeg">
+    <source src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(4).mp3" type="audio/mpeg">
 </audio>
 
 <script>
 const items = [
-  // کلنگ‌ها
-  "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png",
-  "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png",
-  "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png",
-  "https://minecraft.wiki/w/File:Wooden_Pickaxe_JE3_BE3.png",
-  "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png",
-  "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png",
-  "https://minecraft.wiki/w/Golden_Pickaxe",
-
-  // تبرها
-  "https://minecraft.wiki/images/Netherite_Axe_JE2.png",
-  "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png",
-  "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png",
-  "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png",
-  "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png",
-  "https://minecraft.wiki/images/Wooden_Axe_JE2_BE2.png",
-  "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png",
-
-  // شمشیرها
-  "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png",
-  "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png",
-  "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png",
-  "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png",
-  "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png",
-  "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png",
-  "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png"
+    "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png?8a6ea",
+    "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png?3b91b&format=original",
+    "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original",
+    "https://minecraft.wiki/w/File:Wooden_Pickaxe_JE3_BE3.png",
+    "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original",
+    "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png?36cb3&format=original",
+    "https://minecraft.wiki/w/Golden_Pickaxe",
+    "https://minecraft.wiki/images/Netherite_Axe_JE2.png?52d88&format=original",
+    "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original",
+    "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png?5b5c3&format=original",
+    "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png?014ea&format=original",
+    "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png?d33a8&format=original",
+    "https://minecraft.wiki/images/Wooden_Axe_JE2_BE2.png?ff0b9&format=original",
+    "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png?2e133&format=original",
+    "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png?8e866&format=original",
+    "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original",
+    "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png?315d2&format=original",
+    "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png?62770&format=original",
+    "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png?d003e&format=original",
+    "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png?065ee&format=original",
+    "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png?0ea76&format=original"
 ];
 
+const container = document.getElementById('floating-container');
+
 function random(min, max) {
-  return Math.random() * (max - min) + min;
+    return Math.random() * (max - min) + min;
 }
 
-function createFloatingItem() {
-  const img = document.createElement('img');
-  img.src = items[Math.floor(Math.random() * items.length)];
-  img.className = 'floating-item';
-  img.style.width = `${random(30, 70)}px`;
-  
-  // تعیین نقطه شروع از یکی از چهار طرف
-  const side = Math.floor(random(0,4));
-  let x, y, vx, vy;
+function createItem() {
+    const img = document.createElement('img');
+    img.src = items[Math.floor(Math.random() * items.length)];
+    container.appendChild(img);
 
-  if(side === 0){ // بالا
-    x = random(0, window.innerWidth);
-    y = -100;
-    vx = random(-1,1);
-    vy = random(0.5,2);
-  } else if(side === 1){ // پایین
-    x = random(0, window.innerWidth);
-    y = window.innerHeight + 100;
-    vx = random(-1,1);
-    vy = -random(0.5,2);
-  } else if(side === 2){ // چپ
-    x = -100;
-    y = random(0, window.innerHeight);
-    vx = random(0.5,2);
-    vy = random(-1,1);
-  } else { // راست
-    x = window.innerWidth + 100;
-    y = random(0, window.innerHeight);
-    vx = -random(0.5,2);
-    vy = random(-1,1);
-  }
+    let side = Math.floor(Math.random() * 4); // 0=top,1=right,2=bottom,3=left
+    let x, y, dx, dy;
 
-  img.style.left = `${x}px`;
-  img.style.top = `${y}px`;
-  document.body.appendChild(img);
-
-  function animate() {
-    x += vx;
-    y += vy;
-    img.style.left = `${x}px`;
-    img.style.top = `${y}px`;
-
-    // وقتی از صفحه خارج شد دوباره بساز
-    if(x < -150 || x > window.innerWidth + 150 || y < -150 || y > window.innerHeight + 150) {
-      img.remove();
-      createFloatingItem();
-    } else {
-      requestAnimationFrame(animate);
+    switch(side){
+        case 0: x = random(0, window.innerWidth); y = -50; dx = random(-1,1); dy = random(0.5,2); break;
+        case 1: x = window.innerWidth+50; y = random(0, window.innerHeight); dx = random(-2,-0.5); dy = random(-1,1); break;
+        case 2: x = random(0, window.innerWidth); y = window.innerHeight+50; dx = random(-1,1); dy = random(-2,-0.5); break;
+        case 3: x = -50; y = random(0, window.innerHeight); dx = random(0.5,2); dy = random(-1,1); break;
     }
-  }
-  animate();
+
+    img.style.left = x + 'px';
+    img.style.top = y + 'px';
+
+    function move() {
+        x += dx;
+        y += dy;
+        img.style.left = x + 'px';
+        img.style.top = y + 'px';
+
+        if(x < -100 || x > window.innerWidth+100 || y < -100 || y > window.innerHeight+100){
+            img.remove();
+            createItem();
+        } else {
+            requestAnimationFrame(move);
+        }
+    }
+    move();
 }
 
-// تعداد اولیه شناورها
-for(let i=0;i<15;i++){
-  createFloatingItem();
+// ایجاد چندین آیتم همزمان
+for(let i=0; i<15; i++){
+    setTimeout(createItem, i*300);
 }
+
 </script>
-
 </body>
 </html>
