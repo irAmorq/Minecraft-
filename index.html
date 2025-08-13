@@ -6,372 +6,78 @@
 <style>
   body {
     margin: 0;
-    font-family: sans-serif;
-    background: #1c1c1c;
-    color: white;
-    overflow-x: hidden;
-  }
-  .background-items {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
+    background: #111;
     overflow: hidden;
-    z-index: 0;
+    font-family: sans-serif;
+    color: white;
   }
-  .background-items img {
+  .bg-item {
     position: absolute;
     width: 40px;
-    opacity: 0.7;
-    animation: float linear infinite;
+    height: 40px;
+    animation: move 20s linear infinite;
   }
-  @keyframes float {
-    0% { transform: translateY(100vh) translateX(0); }
-    100% { transform: translateY(-50px) translateX(50px); }
-  }
-  .container {
-    position: relative;
-    z-index: 10;
-    padding: 50px 20px;
-    max-width: 900px;
-    margin: auto;
+  @keyframes move {
+    from { transform: translateY(-50px); }
+    to { transform: translateY(110vh); }
   }
   .download-section {
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    margin-bottom: 40px;
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 50px;
   }
   .download-section img {
-    width: 200px;
-    border-radius: 10px;
+    max-width: 200px;
+    display: block;
+    margin: 0 auto 20px;
   }
-  .download-btn {
-    background: linear-gradient(45deg, #4CAF50, #45a049);
-    color: white;
+  .download-section a {
+    display: inline-block;
     padding: 12px 25px;
-    border: none;
+    background: #4CAF50;
+    color: white;
     border-radius: 25px;
     text-decoration: none;
     font-weight: bold;
-    transition: all 0.3s ease;
   }
-  .download-btn:hover {
-    background: linear-gradient(45deg, #45a049, #4CAF50);
-    transform: scale(1.05);
-    box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-  }
-  .eitaa-section {
-    display: flex;
-    align-items: center;
-    background: rgba(255,255,255,0.05);
-    backdrop-filter: blur(10px);
-    border: 2px solid #FF9800;
-    border-radius: 15px;
-    padding: 20px;
-    text-decoration: none;
+  .eitaa {
+    margin-top: 40px;
+    display: inline-block;
+    padding: 12px 25px;
+    background: #FF9800;
     color: white;
-    gap: 20px;
-    transition: all 0.3s ease;
-  }
-  .eitaa-section:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
-    border-color: #FF9800;
-  }
-  .eitaa-section img {
-    width: 80px;
-    height: 80px;
-    border-radius: 8px;
-    object-fit: cover;
-    border: 2px solid #FF9800;
-  }
-  .eitaa-section span {
-    font-size: 24px;
-    font-weight: bold;
-    color: #FF9800;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-  }
-  @media (max-width: 600px) {
-    .eitaa-section { flex-direction: column; text-align: center; }
+    border-radius: 15px;
+    text-decoration: none;
   }
 </style>
 </head>
-<body><div class="background-items" id="background"></div><div class="container">
-  <div class="download-section">
-    <img src="https://uploadkon.ir/uploads/6fd713_25Negar-1755081442153.png" alt="Minecraft 1.21.100">
-    <a class="download-btn" href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk" download>ماینکرافت 1.21.100 - حجم 303 مگابایت</a>
-  </div>  <a class="eitaa-section" href="#">
-    <img src="https://uploadkon.ir/uploads/eaf613_25IMG-۲۰۲۵۰۸۱۳-۱۲۱۳۰۲.png" alt="Eitaa">
-    <span>ماینکرافت آدونز در ایتا</span>
-  </a>
-</div><script>
-const tools = [
-  'https://minecraft.wiki/w/File:Stone_Pickaxe_JE2_BE2.png',
-  'https://minecraft.wiki/w/File:Diamond_Pickaxe_JE3_BE3.png',
-  'https://minecraft.wiki/w/File:Iron_Shovel_JE3_BE2.png',
-  'https://minecraft.wiki/w/File:Diamond_Shovel_JE3_BE3.png',
-  'https://minecraft.wiki/w/File:Iron_Axe_JE5_BE2.png',
-  'https://minecraft.wiki/w/File:Diamond_Axe_JE3_BE3.png',
-  'https://minecraft.wiki/w/File:Stone_Sword_JE2_BE2.png',
-  'https://minecraft.wiki/w/File:Iron_Sword_JE2_BE2.png',
-  'https://minecraft.wiki/w/File:Diamond_Sword_JE3_BE3.png'
+<body>
+  <script>
+    const tools = [
+  'https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original',
+  'https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original',
+  'https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original',
+  'https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png?62770&format=original',
+  'https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png?d003e&format=original',
+  'https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original',
+  'https://minecraft.wiki/images/Diamond_Shovel_JE3_BE3.png?fd904&format=original'
 ];
-
-const bg = document.getElementById('background');
-
-for(let i=0;i<15;i++){
-  let img = document.createElement('img');
-  img.src = tools[Math.floor(Math.random()*tools.length)];
-  img.style.left = Math.random()*100 + 'vw';
-  img.style.top = Math.random()*100 + 'vh';
-  img.style.animationDuration = (10 + Math.random()*20) + 's';
-  img.style.width = 30 + Math.random()*30 + 'px';
-  bg.appendChild(img);
-}
-</script></body>
-</html>@media (max-width:600px) {.download-item {flex-direction:column; text-align:center; gap:15px;}
-.eitaa-link {flex-direction:column; text-align:center; gap:15px;} .eitaa-image {margin-left:0;} .title {font-size:28px;}}
-
-/* بک‌گراند ابزارهای ماینکرافت */
-.tool {position:absolute; width:40px; height:40px; z-index:1; opacity:0.6;}
-</style>
-</head>
-<body>
-
-<!-- بک‌گراند ابزارها -->
-<img src="https://i.imgur.com/3gZQvNj.png" class="tool" id="tool1">
-<img src="https://i.imgur.com/GkzI5qO.png" class="tool" id="tool2">
-<img src="https://i.imgur.com/7Yg7YyF.png" class="tool" id="tool3">
-<img src="https://i.imgur.com/2TQ0EkL.png" class="tool" id="tool4">
-<img src="https://i.imgur.com/RKz0kZk.png" class="tool" id="tool5">
-<img src="https://i.imgur.com/OlP1VEO.png" class="tool" id="tool6">
-
-<div class="container">
-    <!-- Header -->
-    <div class="header">
-        <h1 class="title">دانلود ماینکرافت بدراک</h1>
-        <p class="subtitle">دانلود نسخه های ماینکرافت بدون موسیقی</p>
+    for(let i=0; i<30; i++) {
+      const img = document.createElement('img');
+      img.src = tools[Math.floor(Math.random()*tools.length)];
+      img.className = 'bg-item';
+      img.style.left = Math.random()*100+'vw';
+      img.style.animationDuration = (10 + Math.random()*20)+'s';
+      document.body.appendChild(img);
+    }
+  </script>  <div class="download-section">
+    <img src="https://uploadkon.ir/uploads/6fd713_25Negar-1755081442153.png" alt="ماینکرافت 1.21.100">
+    <h2>ماینکرافت 1.21.100 - حجم: 303 مگابایت</h2>
+    <a href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk">دانلود</a>
+    <div>
+      <a class="eitaa" href="#">ماینکرافت آدونز در ایتا</a>
     </div>
-
-    <!-- Downloads Section -->
-    <div class="downloads-section">
-        <div class="download-item">
-            <div class="download-info">
-                <div class="version-name">ماینکرافت 1.21.100</div>
-                <div class="version-details">آخرین نسخه رسمی • اندروید</div>
-                <div class="version-details">حجم: 303 مگابایت</div>
-            </div>
-            <a href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk" class="download-btn" target="_blank">دانلود</a>
-        </div>
-    </div>
-
-    <div style="height:3px; background:#4CAF50; margin:40px 0; border-radius:2px;"></div>
-
-    <!-- Eitaa Section -->
-    <div class="eitaa-section">
-        <a href="https://eitaa.com/Minecraft_Addons" class="eitaa-link" target="_blank">
-            <img src="https://uploadkon.ir/uploads/eaf613_25IMG-۲۰۲۵۰۸۱۳-۱۲۱۳۰۲.png" 
-                 alt="ماینکرافت آدونز" 
-                 class="eitaa-image"
-                 onerror="this.src=''; this.alt='تصویر قابل نمایش نیست'; this.style.display='none';">
-            <div class="eitaa-text">ماینکرافت آدونز در ایتا</div>
-        </a>
-    </div>
-
-    <div class="footer">
-        <p>© 2022 ماینکرافت آدونز - تمامی حقوق محفوظ است</p>
-    </div>
-</div>
-
-<script>
-// حرکت تصادفی ابزارها
-const tools = Array.from(document.querySelectorAll('.tool'));
-tools.forEach(tool => {
-    tool.style.top = Math.random()*window.innerHeight + 'px';
-    tool.style.left = Math.random()*window.innerWidth + 'px';
-});
-
-function animateTools(){
-    tools.forEach(tool => {
-        let top = parseFloat(tool.style.top);
-        let left = parseFloat(tool.style.left);
-        top += (Math.random()-0.5)*2;
-        left += (Math.random()-0.5)*2;
-        if(top<0) top=window.innerHeight;
-        if(top>window.innerHeight) top=0;
-        if(left<0) left=window.innerWidth;
-        if(left>window.innerWidth) left=0;
-        tool.style.top = top + 'px';
-        tool.style.left = left + 'px';
-    });
-    requestAnimationFrame(animateTools);
-}
-animateTools();
-</script>
-
+  </div>
 </body>
-</html>        .subtitle {
-            font-size: 18px;
-            color: #ccc;
-        }
-        .downloads-section {
-            display: grid;
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-        .download-item {
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.2);
-            border-radius: 15px;
-            padding: 25px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.3s ease;
-        }
-        .download-item:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(76, 175, 80, 0.3);
-            border-color: #4CAF50;
-        }
-        .download-info {
-            flex: 1;
-        }
-        .version-name {
-            font-size: 22px;
-            font-weight: bold;
-            color: #4CAF50;
-            margin-bottom: 8px;
-        }
-        .version-details {
-            color: #ccc;
-            font-size: 14px;
-            margin-bottom: 5px;
-        }
-        .download-btn {
-            background: linear-gradient(45deg, #4CAF50, #45a049);
-            color: white;
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            text-decoration: none;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            display: inline-block;
-        }
-        .download-btn:hover {
-            background: linear-gradient(45deg, #45a049, #4CAF50);
-            transform: scale(1.05);
-            box-shadow: 0 5px 15px rgba(76, 175, 80, 0.4);
-        }
-        .footer {
-            text-align: center;
-            padding: 20px 0;
-            border-top: 1px solid rgba(255,255,255,0.2);
-            color: #ccc;
-            font-size: 14px;
-        }
-        .eitaa-section {
-            margin-bottom: 40px;
-        }
-        .eitaa-link {
-            display: flex;
-            align-items: center;
-            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            backdrop-filter: blur(10px);
-            border: 2px solid #FF9800;
-            border-radius: 15px;
-            padding: 25px;
-            text-decoration: none;
-            color: white;
-            transition: all 0.3s ease;
-        }
-        .eitaa-link:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 152, 0, 0.3);
-            border-color: #FF9800;
-        }
-        .eitaa-image {
-            width: 80px;
-            height: 80px;
-            border-radius: 8px;
-            margin-left: 20px;
-            object-fit: cover;
-            border: 2px solid #FF9800;
-        }
-        .eitaa-text {
-            font-size: 24px;
-            font-weight: bold;
-            color: #FF9800;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
-        }
-        @media (max-width: 600px) {
-            .download-item {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            .eitaa-link {
-                flex-direction: column;
-                text-align: center;
-                gap: 15px;
-            }
-            .eitaa-image {
-                margin-left: 0;
-            }
-            .title {
-                font-size: 28px;
-            }
-        }
-    </style>
-</head>
-<body>
-    <div class="container">
-        <!-- Header -->
-        <div class="header">
-            <h1 class="title">دانلود ماینکرافت بدراک</h1>
-            <p class="subtitle">دانلود نسخه های ماینکرافت بدون موسیقی</p>
-        </div>
-
-        <!-- Downloads Section -->
-        <div class="downloads-section">
-            <div class="download-item">
-                <div class="download-info">
-                    <div class="version-name">ماینکرافت 1.21.100</div>
-                    <div class="version-details">آخرین نسخه رسمی • اندروید</div>
-                    <div class="version-details">حجم: 303 مگابایت</div>
-                </div>
-                <a href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk" class="download-btn" target="_blank">دانلود</a>
-            </div>
-        </div>
-
-        <!-- Green Separator Line -->
-        <div style="height: 3px; background: #4CAF50; margin: 40px 0; border-radius: 2px;"></div>
-
-        <!-- Eitaa Section -->
-        <div class="eitaa-section">
-            <a href="https://eitaa.com/Minecraft_Addons" class="eitaa-link" target="_blank">
-                <img src="https://uploadkon.ir/uploads/e62c13_25Negar-. .png" 
-                     alt="ماینکرافت آدونز" 
-                     class="eitaa-image"
-                     onerror="this.style.display='none';">
-                <div class="eitaa-text">ماینکرافت آدونز در ایتا</div>
-            </a>
-        </div>
-
-        <!-- Footer -->
-        <div class="footer">
-            <p>© 2022 ماینکرافت آدونز - تمامی حقوق محفوظ است</p>
-        </div>
-    </div>
-</body>
-                  </html>
+</html>
