@@ -1,134 +1,176 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ماینکرافت</title>
-<link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
+<title>دانلود ماینکرافت بدراک</title>
 <style>
-    body {
-        margin: 0;
-        font-family: 'Lalezar', cursive;
-        overflow: hidden;
-        background-color: #111;
-        color: #fff;
-    }
-    .floating-item {
-        position: absolute;
-        width: 60px;
-        height: 60px;
-        pointer-events: none;
-    }
-    .download-section {
-        position: fixed;
-        bottom: 50px;
-        left: 50%;
-        transform: translateX(-50%);
-        text-align: center;
-        background: rgba(0,0,0,0.7);
-        padding: 20px;
-        border-radius: 15px;
-    }
-    .download-section img {
-        width: 150px;
-        cursor: pointer;
-        display: block;
-        margin: 10px auto 0 auto;
-    }
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #0d1421, #1a1a2e);
+    color: white;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.random-image {
+    position: fixed;
+    width: 50px;
+    height: auto;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 3px solid #4CAF50;
+    margin-bottom: 40px;
+}
+
+.title { font-size: 36px; color: #4CAF50; margin-bottom: 10px; }
+.subtitle { font-size: 18px; color: #ccc; }
+
+.download-box {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: all 0.3s ease;
+}
+.download-box:hover { background: rgba(255,255,255,0.15); transform: translateY(-5px); }
+
+.download-content { display: flex; align-items: center; margin-bottom: 20px; }
+.download-info { flex: 1; }
+.version-name { font-size: 22px; color: #4CAF50; margin-bottom: 8px; }
+.version-details { color: #ccc; font-size: 14px; margin-bottom: 5px; }
+.download-btn-container { text-align: center; }
+.download-btn-image { width: 200px; border-radius: 8px; cursor: pointer; }
+
+.separator { height: 3px; background: #4CAF50; margin: 40px 0; border-radius: 2px; }
+
+.eitaa-box {
+    background: rgba(255,255,255,0.1);
+    border: 2px solid #FF9800;
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    color: white;
+    margin-bottom: 40px;
+    transition: all 0.3s ease;
+}
+.eitaa-box:hover { background: rgba(255,255,255,0.15); transform: translateY(-5px); }
+.eitaa-image { width: 80px; height: 80px; border-radius: 8px; margin-left: 20px; border: 2px solid #FF9800; }
+.eitaa-text { font-size: 24px; color: #FF9800; font-weight: bold; }
+
+.footer { text-align: center; padding: 20px 0; border-top: 1px solid rgba(255,255,255,0.2); color: #ccc; font-size: 14px; }
 </style>
 </head>
 <body>
 
-<!-- ابزارها، تبرها و شمشیرها -->
-<div id="floating-container"></div>
+<div class="container">
+    <div class="header">
+        <h1 class="title">دانلود ماینکرافت بدراک</h1>
+        <p class="subtitle">دانلود نسخه‌های ماینکرافت بدون موسیقی</p>
+    </div>
 
-<!-- بخش دانلود -->
-<div class="download-section">
-    <h2>دانلود ماینکرافت 1.21.100</h2>
-    <a href="https://minecraft.net" target="_blank">
-        <img src="https://uploadkon.ir/uploads/8a4513_25Negar-1755081442153.png" alt="دانلود ماینکرافت">
+    <a href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk" class="download-box" target="_blank">
+        <div class="download-content">
+            <div class="download-info">
+                <div class="version-name">ماینکرافت 1.21.100</div>
+                <div class="version-details">حجم: 303 مگابایت</div>
+            </div>
+        </div>
+        <div class="download-btn-container">
+            <img src="https://uploadkon.ir/uploads/255b13_25Negar-1755081442153.png" alt="دانلود" class="download-btn-image">
+        </div>
     </a>
+
+    <div class="separator"></div>
+
+    <a href="https://eitaa.com/Minecraft_Addons" class="eitaa-box" target="_blank">
+        <img src="https://uploadkon.ir/uploads/eaf613_25IMG-%DB%B2%DB%B0%DB%B2%DB%B5%DB%B0%DB%B8%DB%B1%DB%B3-%DB%B1%DB%B2%DB%B1%DB%B3%DB%B0%DB%B2.png" alt="ماینکرافت آدونز" class="eitaa-image">
+        <div class="eitaa-text">ماینکرافت آدونز در ایتا</div>
+    </a>
+
+    <div class="footer">
+        <p>© 2025 ماینکرافت آدونز - تمامی حقوق محفوظ است</p>
+    </div>
 </div>
 
-<!-- پخش خودکار موسیقی -->
-<audio id="bgMusic" autoplay></audio>
-
 <script>
-const tracks = [
+const images = [
+    "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png?8a6ea",
+    "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png?3b91b&format=original",
+    "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original",
+    "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original",
+    "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png?36cb3&format=original",
+    "https://minecraft.wiki/images/Netherite_Axe_JE2.png?52d88&format=original",
+    "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original",
+    "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png?5b5c3&format=original",
+    "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png?8e866&format=original",
+    "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original"
+];
+
+function createRandomImage() {
+    const img = document.createElement('img');
+    img.src = images[Math.floor(Math.random() * images.length)];
+    img.className = 'random-image';
+
+    const side = Math.floor(Math.random() * 4); // 0=top,1=right,2=bottom,3=left
+    const duration = Math.random() * 5 + 5; // 5-10s
+    const startOffset = Math.random() * 100;
+
+    if(side===0){ img.style.top='-60px'; img.style.left=startOffset+'vw'; img.animate([{transform:'translateY(0)'},{transform:'translateY(110vh)'}],{duration:duration*1000, easing:'linear'}); }
+    else if(side===1){ img.style.top=startOffset+'vh'; img.style.left='100vw'; img.animate([{transform:'translateX(0)'},{transform:'translateX(-110vw)'}],{duration:duration*1000, easing:'linear'}); }
+    else if(side===2){ img.style.top='100vh'; img.style.left=startOffset+'vw'; img.animate([{transform:'translateY(0)'},{transform:'translateY(-110vh)'}],{duration:duration*1000, easing:'linear'}); }
+    else{ img.style.top=startOffset+'vh'; img.style.left='-60px'; img.animate([{transform:'translateX(0)'},{transform:'translateX(110vw)'}],{duration:duration*1000, easing:'linear'}); }
+
+    document.body.appendChild(img);
+    setTimeout(()=>img.remove(), duration*1000);
+}
+
+setInterval(createRandomImage, 500); // هر 0.5 ثانیه
+
+// موزیک
+let musicStarted=false;
+const tracks=[
     "https://dl.sedatoseda.com/sound/Music-Minecraft%20(2).mp3",
     "https://dl.sedatoseda.com/sound/Music-Minecraft%20(4).mp3"
 ];
+let currentTrack=0;
+const audio=new Audio();
+audio.loop=false;
 
-let currentTrack = 0;
-const audio = document.getElementById('bgMusic');
-audio.src = tracks[currentTrack];
-
-audio.addEventListener('ended', () => {
-    currentTrack = (currentTrack + 1) % tracks.length;
-    audio.src = tracks[currentTrack];
+function playNextTrack(){
+    audio.src=tracks[currentTrack];
     audio.play();
-});
+    currentTrack=(currentTrack+1)%tracks.length;
+}
+audio.addEventListener('ended', playNextTrack);
 
-// لیست همه تصاویر ابزارها
-const items = [
-    "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png",
-    "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png",
-    "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png",
-    "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png",
-    "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png",
-    "https://minecraft.wiki/images/Golden_Pickaxe.png",
-    "https://minecraft.wiki/images/Netherite_Axe_JE2.png",
-    "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png",
-    "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png",
-    "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png",
-    "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png",
-    "https://minecraft.wiki/images/Wooden_Axe_JE2_BE2.png",
-    "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png",
-    "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png",
-    "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png",
-    "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png",
-    "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png",
-    "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png",
-    "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png",
-    "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png"
-];
-
-const container = document.getElementById('floating-container');
-
-function createFloatingItem(src) {
-    const img = document.createElement('img');
-    img.src = src;
-    img.className = 'floating-item';
-    container.appendChild(img);
-
-    function animate() {
-        const xStart = Math.random() * window.innerWidth;
-        const yStart = Math.random() * window.innerHeight;
-        const xEnd = Math.random() * window.innerWidth;
-        const yEnd = Math.random() * window.innerHeight;
-        const duration = 5000 + Math.random() * 5000; // 5 تا 10 ثانیه
-
-        img.style.left = xStart + 'px';
-        img.style.top = yStart + 'px';
-
-        img.animate([
-            { transform: `translate(0px, 0px)` },
-            { transform: `translate(${xEnd-xStart}px, ${yEnd-yStart}px)` }
-        ], {
-            duration: duration,
-            easing: 'linear'
-        }).onfinish = animate;
+document.addEventListener('click',()=>{
+    if(!musicStarted){
+        musicStarted=true;
+        playNextTrack();
     }
-
-    animate();
-}
-
-// ایجاد تعداد زیاد از همه ابزارها
-for(let i=0;i<50;i++){
-    const src = items[Math.floor(Math.random()*items.length)];
-    createFloatingItem(src);
-}
+});
 </script>
-
 </body>
 </html>
