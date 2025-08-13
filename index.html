@@ -1,54 +1,134 @@
-<!DOCTYPE html><html lang="fa" dir="rtl">
+<!DOCTYPE html>
+<html lang="fa">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>ماینکرافت بدراک با ابزارهای شناور</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ماینکرافت</title>
+<link href="https://fonts.googleapis.com/css2?family=Lalezar&display=swap" rel="stylesheet">
 <style>
-body{margin:0;padding:0;overflow:hidden;background:#0d1421;font-family:sans-serif;color:#fff}
-#floating-container{position:fixed;inset:0;pointer-events:none;z-index:1}
-.floating-tool{position:absolute;width:40px;height:40px;will-change:transform;opacity:.4;filter:drop-shadow(0 2px 6px rgba(0,0,0,.5))}
+    body {
+        margin: 0;
+        font-family: 'Lalezar', cursive;
+        overflow: hidden;
+        background-color: #111;
+        color: #fff;
+    }
+    .floating-item {
+        position: absolute;
+        width: 60px;
+        height: 60px;
+        pointer-events: none;
+    }
+    .download-section {
+        position: fixed;
+        bottom: 50px;
+        left: 50%;
+        transform: translateX(-50%);
+        text-align: center;
+        background: rgba(0,0,0,0.7);
+        padding: 20px;
+        border-radius: 15px;
+    }
+    .download-section img {
+        width: 150px;
+        cursor: pointer;
+        display: block;
+        margin: 10px auto 0 auto;
+    }
 </style>
 </head>
 <body>
+
+<!-- ابزارها، تبرها و شمشیرها -->
 <div id="floating-container"></div>
-<audio autoplay loop src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(2).mp3" style="display:none"></audio>
+
+<!-- بخش دانلود -->
+<div class="download-section">
+    <h2>دانلود ماینکرافت 1.21.100</h2>
+    <a href="https://minecraft.net" target="_blank">
+        <img src="https://uploadkon.ir/uploads/8a4513_25Negar-1755081442153.png" alt="دانلود ماینکرافت">
+    </a>
+</div>
+
+<!-- پخش خودکار موسیقی -->
+<audio id="bgMusic" autoplay></audio>
+
 <script>
-const container=document.getElementById('floating-container');
-const images=[
-  'https://minecraft.wiki/w/Special:FilePath/Wooden_Pickaxe_JE3_BE3.png',
-  'https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png',
-  'https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png',
-  'https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png',
-  'https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png',
-  'https://minecraft.wiki/w/Special:FilePath/Golden_Pickaxe_JE3_BE3.png',
-  'https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png',
-  'https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png',
-  'https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png',
-  'https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png',
-  'https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png',
-  'https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png'
+const tracks = [
+    "https://dl.sedatoseda.com/sound/Music-Minecraft%20(2).mp3",
+    "https://dl.sedatoseda.com/sound/Music-Minecraft%20(4).mp3"
 ];
-function rand(min,max){return Math.random()*(max-min)+min}
-function createTool(){
-  const img=document.createElement('img');
-  img.src=images[Math.floor(Math.random()*images.length)];
-  img.className='floating-tool';
-  const size=rand(32,64); img.style.width=size+'px'; img.style.height='auto';
-  let x=rand(0,window.innerWidth-size);
-  let y=rand(0,window.innerHeight-size);
-  let dx=rand(-1,1);
-  let dy=rand(-1,1);
-  function move(){
-    x+=dx; y+=dy;
-    if(x<0||x>window.innerWidth-size)dx*=-1;
-    if(y<0||y>window.innerHeight-size)dy*=-1;
-    img.style.transform=`translate(${x}px,${y}px)`;
-    requestAnimationFrame(move);
-  }
-  move();
-  container.appendChild(img);
+
+let currentTrack = 0;
+const audio = document.getElementById('bgMusic');
+audio.src = tracks[currentTrack];
+
+audio.addEventListener('ended', () => {
+    currentTrack = (currentTrack + 1) % tracks.length;
+    audio.src = tracks[currentTrack];
+    audio.play();
+});
+
+// لیست همه تصاویر ابزارها
+const items = [
+    "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png",
+    "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png",
+    "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png",
+    "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png",
+    "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png",
+    "https://minecraft.wiki/images/Golden_Pickaxe.png",
+    "https://minecraft.wiki/images/Netherite_Axe_JE2.png",
+    "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png",
+    "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png",
+    "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png",
+    "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png",
+    "https://minecraft.wiki/images/Wooden_Axe_JE2_BE2.png",
+    "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png",
+    "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png",
+    "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png",
+    "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png",
+    "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png",
+    "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png",
+    "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png",
+    "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png"
+];
+
+const container = document.getElementById('floating-container');
+
+function createFloatingItem(src) {
+    const img = document.createElement('img');
+    img.src = src;
+    img.className = 'floating-item';
+    container.appendChild(img);
+
+    function animate() {
+        const xStart = Math.random() * window.innerWidth;
+        const yStart = Math.random() * window.innerHeight;
+        const xEnd = Math.random() * window.innerWidth;
+        const yEnd = Math.random() * window.innerHeight;
+        const duration = 5000 + Math.random() * 5000; // 5 تا 10 ثانیه
+
+        img.style.left = xStart + 'px';
+        img.style.top = yStart + 'px';
+
+        img.animate([
+            { transform: `translate(0px, 0px)` },
+            { transform: `translate(${xEnd-xStart}px, ${yEnd-yStart}px)` }
+        ], {
+            duration: duration,
+            easing: 'linear'
+        }).onfinish = animate;
+    }
+
+    animate();
 }
-for(let i=0;i<50;i++)createTool();
+
+// ایجاد تعداد زیاد از همه ابزارها
+for(let i=0;i<50;i++){
+    const src = items[Math.floor(Math.random()*items.length)];
+    createFloatingItem(src);
+}
 </script>
+
 </body>
 </html>
