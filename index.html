@@ -1,315 +1,243 @@
-<!doctype html>
-
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>ماینکرافت آدونز — نسخه تمیز برای گیت‌هاب</title>
-  <style>
-    :root{
-      --bg:#0b0f14;
-      --card:#121923;
-      --text:#e8eef5;
-      --muted:#9fb2c7;
-      --accent:#2ecc71;
-      --danger:#ff6b6b;
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>دانلود ماینکرافت بدراک</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background: linear-gradient(135deg, #0d1421, #1a1a2e);
+        color: white;
+        margin: 0;
+        padding: 20px;
+        min-height: 100vh;
+        overflow: hidden;
+        position: relative;
     }
-    html,body{height:100%}
-    body{
-      margin:0;
-      background: radial-gradient(1200px 800px at 60% -10%, #172231 0, #0b0f14 40%, #0b0f14 100%);
-      color:var(--text);
-      font-family: Vazirmatn, Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, "Noto Sans", "Helvetica Neue", "Tahoma", sans-serif;
-      overflow-x:hidden;
-    }/* لایه‌ی پس‌زمینه برای پرواز آیکن‌ها */
-.sky{
-  position:fixed;
-  inset:0;
-  overflow:hidden;
-  pointer-events:none; /* هیچ کلیکی نگیرد */
-  z-index:0;
-}
 
-/* کانتینر اصلی محتوا */
-.container{
-  position:relative;
-  z-index:1;
-  max-width:960px;
-  margin:64px auto;
-  padding:0 16px;
-}
+    .floating-tool {
+        position: fixed;
+        width: 25px;
+        height: 25px;
+        opacity: 0.4;
+        z-index: 1;
+        pointer-events: none;
+        animation: floatRandom linear infinite;
+    }
 
-.card{
-  background: linear-gradient(180deg, rgba(18,25,35,.85), rgba(12,17,24,.85));
-  border:1px solid rgba(255,255,255,.06);
-  box-shadow: 0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.03);
-  border-radius:20px;
-  padding:24px;
-  backdrop-filter: blur(6px);
-}
+    @keyframes floatRandom {
+        0% { transform: translate(var(--start-x), var(--start-y)) rotate(0deg); }
+        50% { transform: translate(var(--mid-x), var(--mid-y)) rotate(180deg) scale(1.1); }
+        100% { transform: translate(var(--end-x), var(--end-y)) rotate(360deg); }
+    }
 
-.title{font-size:28px;margin:0 0 8px 0}
-.subtitle{font-size:15px;color:var(--muted);margin:0 0 20px 0}
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        position: relative;
+        z-index: 10;
+    }
 
-/* باکس نسخه و حجم */
-.version-wrap{
-  display:grid;
-  grid-template-columns: 1fr 1fr;
-  gap:12px;
-  margin: 12px 0 20px 0;
-}
-.version-details{
-  background:rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.06);
-  border-radius:14px;
-  padding:12px 16px;
-  text-align:center; /* وسط‌چین متن‌ها */
-}
+    .header {
+        text-align: center;
+        padding: 30px 0;
+        border-bottom: 3px solid #4CAF50;
+        margin-bottom: 40px;
+    }
 
-/* باکس دانلود */
-.download-box{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:16px;
-  padding:16px;
-  border-radius:18px;
-  background: linear-gradient(180deg, rgba(34,52,73,.6), rgba(20,30,44,.6));
-  border:1px solid rgba(255,255,255,.08);
-}
+    .title {
+        font-size: 36px;
+        color: #4CAF50;
+        margin-bottom: 10px;
+    }
 
-.download-texts{display:flex; flex-direction:column; gap:8px;}
+    .subtitle {
+        font-size: 18px;
+        color: #ccc;
+    }
 
-.download-cta{
-  display:flex;align-items:center;justify-content:center;
-  background: rgba(255,255,255,.04);
-  border:1px dashed rgba(255,255,255,.12);
-  padding:10px; border-radius:14px;
-}
+    .download-box {
+        background: rgba(255,255,255,0.1);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 15px;
+        padding: 25px;
+        margin-bottom: 40px;
+        color: white;
+    }
 
-/* فقط خود تصویر قابل کلیک باشد */
-.download-cta a{display:inline-block}
-.download-cta img{
-  display:block; height:auto; width: 220px; max-width: 42vw; /* کنترل اندازه */
-  object-fit:contain;
-  filter: drop-shadow(0 6px 12px rgba(0,0,0,.45));
-  transition: transform .18s ease;
-}
-.download-cta img:hover{ transform: translateY(-2px) scale(1.02); }
+    .download-content {
+        display: flex;
+        align-items: center;
+        margin-bottom: 20px;
+    }
 
-.separator{height:1px;background:rgba(255,255,255,.08);margin:20px 0;border-radius:1px}
+    .download-info {
+        flex: 1;
+    }
 
-/* ایتا */
-.eitaa-box{
-  display:flex;align-items:center;gap:12px;text-decoration:none;color:var(--text);
-  background: rgba(255,255,255,.04);
-  border:1px solid rgba(255,255,255,.08);
-  border-radius:14px; padding:12px 14px;
-  transition: transform .15s ease, background .2s ease;
-}
-.eitaa-box:hover{ transform: translateY(-1px); background: rgba(255,255,255,.06);}
-.eitaa-image{ width:48px; height:48px; object-fit:contain; }
-.eitaa-text{ font-weight:600 }
+    .version-name {
+        font-size: 22px;
+        color: #4CAF50;
+        margin-bottom: 8px;
+    }
 
-.footer{ color:var(--muted); font-size:12px; text-align:center; margin-top:28px }
+    .version-details {
+        color: #ccc;
+        font-size: 14px;
+        margin-bottom: 5px;
+    }
 
-/* آیکن‌های پرنده */
-.flyer{
-  position:absolute; top:0; left:0; will-change: transform, opacity;
-  width:auto; height:auto; object-fit:contain;
-  filter: drop-shadow(0 8px 16px rgba(0,0,0,.5));
-  pointer-events:none;
-  user-select:none;
-}
+    .download-btn-container {
+        text-align: center;
+    }
 
-@media (max-width:640px){
-  .version-wrap{ grid-template-columns: 1fr; }
-}
+    .download-btn-image {
+        width: 200px;
+        height: auto;
+        border-radius: 8px;
+        cursor: pointer;
+    }
 
-  </style>
+    .separator {
+        height: 3px;
+        background: #4CAF50;
+        margin: 40px 0;
+        border-radius: 2px;
+    }
+
+    .eitaa-box {
+        background: rgba(255,255,255,0.1);
+        border: 2px solid #FF9800;
+        border-radius: 15px;
+        padding: 25px;
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+        color: white;
+        margin-bottom: 40px;
+        transition: all 0.3s ease;
+    }
+
+    .eitaa-box:hover {
+        background: rgba(255,255,255,0.15);
+        transform: translateY(-5px);
+    }
+
+    .eitaa-image {
+        width: 80px;
+        height: 80px;
+        border-radius: 8px;
+        margin-left: 20px;
+        border: 2px solid #FF9800;
+    }
+
+    .eitaa-text {
+        font-size: 24px;
+        color: #FF9800;
+        font-weight: bold;
+    }
+
+    .footer {
+        text-align: center;
+        padding: 20px 0;
+        border-top: 1px solid rgba(255,255,255,0.2);
+        color: #ccc;
+        font-size: 14px;
+    }
+</style>
 </head>
 <body>
-  <!-- لایهٔ پس‌زمینه برای انیمیشن بی‌نهایت ابزارها -->
-  <div class="sky" id="sky"></div>  <div class="container">
-    <div class="card">
-      <h1 class="title">ماینکرافت آدونز</h1>
-      <p class="subtitle">نسخهٔ بهینه برای انتشار در گیت‌هاب — حذف عناصر مزاحم + انیمیشن تصادفی ابزارها + دکمه‌های جدید</p><div class="version-wrap">
-    <div class="version-details">آخرین نسخه رسمی • اندروید</div>
-    <div class="version-details">حجم: 303 مگابایت</div>
-  </div>
 
-  <!-- باکس دانلود: فقط تصویر کلیک می‌شود -->
-  <div class="download-box">
-    <div class="download-texts">
-      <div class="version-details" style="margin:0">دانلود مستقیم</div>
-      <div class="version-details" style="margin:0">سرور پرسرعت</div>
+<!-- آیتم‌های شناور -->
+<script>
+const images = [
+    "https://minecraft.wiki/images/4/4b/Stone_Pickaxe_JE2_BE2.png",
+    "https://minecraft.wiki/images/e/e7/Diamond_Pickaxe_JE3_BE3.png",
+    "https://minecraft.wiki/images/1/19/Iron_Shovel_JE3_BE2.png",
+    "https://minecraft.wiki/images/0/05/Diamond_Shovel_JE3_BE3.png",
+    "https://minecraft.wiki/images/5/58/Iron_Axe_JE5_BE2.png",
+    "https://minecraft.wiki/images/c/c4/Diamond_Axe_JE3_BE3.png",
+    "https://minecraft.wiki/images/c/c0/Stone_Sword_JE2_BE2.png",
+    "https://minecraft.wiki/images/8/8e/Iron_Sword_JE2_BE2.png",
+    "https://minecraft.wiki/images/4/44/Diamond_Sword_JE3_BE3.png"
+];
+
+for (let i = 0; i < 30; i++) {
+    let img = document.createElement("img");
+    img.src = images[Math.floor(Math.random() * images.length)];
+    img.className = "floating-tool";
+    
+    let startX = Math.random() * window.innerWidth;
+    let startY = Math.random() * window.innerHeight;
+    let endX = Math.random() * window.innerWidth;
+    let endY = Math.random() * window.innerHeight;
+    let midX = (startX + endX) / 2 + (Math.random() * 100 - 50);
+    let midY = (startY + endY) / 2 + (Math.random() * 100 - 50);
+
+    img.style.setProperty("--start-x", startX + "px");
+    img.style.setProperty("--start-y", startY + "px");
+    img.style.setProperty("--mid-x", midX + "px");
+    img.style.setProperty("--mid-y", midY + "px");
+    img.style.setProperty("--end-x", endX + "px");
+    img.style.setProperty("--end-y", endY + "px");
+
+    img.style.animationDuration = (10 + Math.random() * 10) + "s";
+    document.body.appendChild(img);
+}
+</script>
+
+<div class="container">
+    <div class="header">
+        <h1 class="title">دانلود ماینکرافت بدراک</h1>
+        <p class="subtitle">دانلود نسخه های ماینکرافت بدون موسیقی</p>
     </div>
-    <div class="download-cta">
-      <a href="#download" aria-label="دانلود">
-        <img src="https://uploadkon.ir/uploads/255b13_25Negar-1755081442153.png" alt="دانلود" class="download-btn-image" />
-      </a>
+
+    <div class="download-box">
+        <div class="download-content">
+            <div class="download-info">
+                <div class="version-name">ماینکرافت 1.21.100</div>
+                <div class="version-details">آخرین نسخه رسمی • اندروید</div>
+                <div class="version-details">حجم: 303 مگابایت</div>
+            </div>
+        </div>
+        <div class="download-btn-container">
+            <a href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk" target="_blank">
+                <img src="https://uploadkon.ir/uploads/255b13_25Negar-1755081442153.png" alt="دانلود" class="download-btn-image">
+            </a>
+        </div>
     </div>
-  </div>
 
-  <div class="separator"></div>
+    <div class="separator"></div>
 
-  <a href="https://eitaa.com/Minecraft_Addons" class="eitaa-box" target="_blank" rel="noopener">
-    <img src="https://uploadkon.ir/uploads/eaf613_25IMG-%DB%B2%DB%B0%DB%B2%DB%B5%DB%B0%DB%B8%DB%B1%DB%B3-%DB%B1%DB%B2%DB%B1%DB%B3%DB%B0%DB%B2.png" alt="ماینکرافت آدونز در ایتا" class="eitaa-image" />
-    <div class="eitaa-text">ماینکرافت آدونز در ایتا</div>
-  </a>
+    <a href="https://eitaa.com/Minecraft_Addons" class="eitaa-box" target="_blank">
+        <img src="https://uploadkon.ir/uploads/eaf613_25IMG-%DB%B2%DB%B0%DB%B2%DB%B5%DB%B0%DB%B8%DB%B1%DB%B3-%DB%B1%DB%B2%DB%B1%DB%B3%DB%B0%DB%B2.png" alt="ماینکرافت آدونز" class="eitaa-image">
+        <div class="eitaa-text">ماینکرافت آدونز در ایتا</div>
+    </a>
 
-  <div class="footer">© 2025 ماینکرافت آدونز - تمامی حقوق محفوظ است</div>
+    <div class="footer">
+        <p>© 2022 ماینکرافت آدونز - تمامی حقوق محفوظ است</p>
+    </div>
 </div>
 
-  </div>  <!-- پخش خودکار دو آهنگ پشت‌سرهم (در حد امکان سیاست مرورگر) --><audio id="musicA" preload="auto" src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(2).mp3" playsinline></audio> <audio id="musicB" preload="auto" src="https://dl.sedatoseda.com/sound/Music-Minecraft%20(4).mp3" playsinline></audio>
+<!-- آهنگ -->
+<audio id="bgMusic" autoplay loop>
+    <source src="song1.mp3" type="audio/mpeg">
+</audio>
+<audio id="bgMusic2">
+    <source src="song2.mp3" type="audio/mpeg">
+</audio>
+<script>
+    let audio1 = document.getElementById("bgMusic");
+    let audio2 = document.getElementById("bgMusic2");
 
-  <script>
-    /* =====================
-       1) حذف هر اسکریپت مزاحم قبلی (اگر جایی کپی شده بود)
-       ===================== */
-    // اگر قبلاً اسکریپت یا آیفریم Cloudflare تزریق شده باشد، حذفش کن
-    try{
-      document.querySelectorAll('iframe').forEach(f=>{
-        const doc = f.contentWindow?.document || f.contentDocument;
-        // اگر Invisible بوده
-        if(getComputedStyle(f).visibility==='hidden' || (f.width==1 && f.height==1)){
-          f.remove();
-        }
-      });
-      // هر اسکریپت ناشناس با مسیر challenge-platform را حذف کن
-      document.querySelectorAll('script[src*="challenge-platform"]').forEach(s=>s.remove());
-    }catch(err){/* ignore */}
+    audio1.onended = () => { audio2.play(); };
+    audio2.onended = () => { audio1.play(); };
 
-    /* =====================
-       2) انیمیشن بی‌نهایت و تصادفی ابزارهای ماینکرافت
-       ===================== */
-    const assetURLs = [
-      // Pickaxes
-      "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png?8a6ea",
-      "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png?3b91b&format=original",
-      "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original",
-      // Wooden pickaxe page is not direct PNG; skip to avoid hotlink issues
-      "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original",
-      "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png?36cb3&format=original",
-      // Axes
-      "https://minecraft.wiki/images/Netherite_Axe_JE2.png?52d88&format=original",
-      "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original",
-      "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png?5b5c3&format=original",
-      "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png?014ea&format=original",
-      "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png?d33a8&format=original",
-      "https://minecraft.wiki/images/Wooden_Axe_JE2_BE2.png?ff0b9&format=original",
-      "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png?2e133&format=original",
-      // Swords
-      "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png?8e866&format=original",
-      "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original",
-      "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png?315d2&format=original",
-      "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png?62770&format=original",
-      "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png?d003e&format=original",
-      "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png?065ee&format=original",
-      "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png?0ea76&format=original",
-    ];
+    document.addEventListener("click", () => {
+        audio1.play().catch(()=>{});
+    });
+</script>
 
-    const sky = document.getElementById('sky');
-    const MAX_ON_SCREEN = 80; // محدودیت برای کارایی
-    const SPAWN_INTERVAL_MS = 300; // هر 0.3 ثانیه یکی تولید کن
-
-    function rand(min, max){ return Math.random() * (max - min) + min; }
-    function pick(arr){ return arr[(Math.random()*arr.length)|0]; }
-
-    function spawnOne(){
-      if(sky.childElementCount > MAX_ON_SCREEN) return;
-
-      const img = new Image();
-      img.loading = 'lazy';
-      img.decoding = 'async';
-      img.className = 'flyer';
-      img.src = pick(assetURLs);
-
-      const vw = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-      const vh = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-
-      const size = rand(32, 96); // اندازه‌ی تصادفی
-      img.style.width = size + 'px';
-
-      // انتخاب لبهٔ ورود
-      const edge = pick(['top','bottom','left','right']);
-      const margin = 60; // کمی بیرون از صفحه شروع/پایان
-
-      let startX, startY, endX, endY;
-
-      if(edge === 'left'){
-        startX = -margin - size; startY = rand(-margin, vh+margin);
-        endX   = vw + margin;    endY   = startY + rand(-vh*0.4, vh*0.4); // مورب
-      }else if(edge === 'right'){
-        startX = vw + margin;    startY = rand(-margin, vh+margin);
-        endX   = -margin - size; endY   = startY + rand(-vh*0.4, vh*0.4);
-      }else if(edge === 'top'){
-        startX = rand(-margin, vw+margin); startY = -margin - size;
-        endX   = startX + rand(-vw*0.4, vw*0.4); endY = vh + margin;
-      }else{ // bottom
-        startX = rand(-margin, vw+margin); startY = vh + margin;
-        endX   = startX + rand(-vw*0.4, vw*0.4); endY = -margin - size;
-      }
-
-      // کمی چرخش/تلوتلو خوردن
-      const rotateStart = rand(-15, 15);
-      const rotateEnd   = rotateStart + rand(-90, 90);
-      const drift1 = rand(-12, 12);
-      const drift2 = rand(-12, 12);
-
-      img.style.transform = `translate(${startX}px, ${startY}px) rotate(${rotateStart}deg)`;
-      img.style.opacity = '0';
-      sky.appendChild(img);
-
-      const duration = rand(8000, 18000); // 8 تا 18 ثانیه
-
-      const anim = img.animate([
-        { transform:`translate(${startX}px, ${startY}px) rotate(${rotateStart}deg)`, opacity:0 },
-        { transform:`translate(${(startX+endX)/2 + drift1}px, ${(startY+endY)/2 + drift2}px) rotate(${(rotateStart+rotateEnd)/2}deg)`, opacity:1, offset:0.4 },
-        { transform:`translate(${endX}px, ${endY}px) rotate(${rotateEnd}deg)`, opacity:0 }
-      ], { duration, easing:'linear' });
-
-      anim.onfinish = () => img.remove();
-    }
-
-    // تولید متناوب
-    setInterval(spawnOne, SPAWN_INTERVAL_MS);
-    // یک موج اولیه
-    for(let i=0;i<18;i++){ setTimeout(spawnOne, i*120); }
-
-    /* =====================
-       3) مدیریت پخش خودکار دو آهنگ پشت سر هم
-       ===================== */
-    const a = document.getElementById('musicA');
-    const b = document.getElementById('musicB');
-
-    function chain(){
-      a.currentTime = 0; b.currentTime = 0;
-      a.onended = ()=>{ b.play().catch(()=>{}); };
-      b.onended = ()=>{ a.play().catch(()=>{}); };
-    }
-
-    chain();
-
-    // تلاش برای پخش خودکار با صدا — ممکن است به خاطر سیاست مرورگر بلاک شود
-    // ترفند: ابتدا بی‌صدا پخش کن، سپس کم‌کم صدا را بالا ببر
-    (async ()=>{
-      try{
-        a.muted = true; b.muted = true;
-        await a.play();
-        // بعد از چند ثانیه کوشش برای فعال کردن صدا
-        setTimeout(()=>{ a.muted=false; b.muted=false; }, 1200);
-      }catch(e){
-        // اگر بلاک شد، با اولین تعامل کاربر شروع کن
-        const kickoff = ()=>{
-          a.play().catch(()=>{});
-          document.removeEventListener('pointerdown', kickoff);
-        };
-        document.addEventListener('pointerdown', kickoff, { once:true });
-      }
-    })();
-
-    // غیرقابل توقف کردن کنترل‌ها (کنترل‌ها نمایش داده نمی‌شوند)
-    a.controls = false; b.controls = false;
-  </script></body>
+</body>
 </html>
