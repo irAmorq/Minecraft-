@@ -1,142 +1,144 @@
 <!DOCTYPE html>
-<html lang="fa">
+<html lang="fa" dir="rtl">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ماینکرافت 1.21.100</title>
+<title>دانلود ماینکرافت بدراک</title>
 <style>
-    body {
-        margin: 0;
-        padding: 0;
-        font-family: 'Lalezar', sans-serif;
-        background: #222;
-        overflow-x: hidden;
-        min-height: 200vh;
-    }
-    @import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
 
-    .download-container {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        margin-top: 30px;
-    }
+body {
+    font-family: 'Lalezar', Arial, sans-serif;
+    background: linear-gradient(135deg, #0d1421, #1a1a2e);
+    color: white;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
 
-    .download-image {
-        width: 150px;
-        height: 150px;
-        object-fit: contain;
-        cursor: pointer;
-    }
+.floating-tool {
+    position: fixed;
+    width: 40px;
+    height: 40px;
+    opacity: 0.3;
+    z-index: 1;
+    pointer-events: none;
+    animation: float linear infinite;
+}
 
-    .download-text {
-        text-align: center;
-        font-size: 20px;
-        color: white;
-        margin-top: 10px;
-    }
+@keyframes float {
+    0% { transform: translate(var(--start-x), var(--start-y)) rotate(0deg); }
+    100% { transform: translate(var(--end-x), var(--end-y)) rotate(360deg); }
+}
 
-    .floating-item {
-        position: fixed;
-        width: 60px;
-        height: 60px;
-        object-fit: contain;
-        z-index: 0;
-        pointer-events: none;
-    }
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 10;
+}
+
+.header {
+    text-align: center;
+    padding: 30px 0;
+    border-bottom: 3px solid #4CAF50;
+    margin-bottom: 40px;
+}
+
+.title {
+    font-size: 36px;
+    color: #4CAF50;
+    margin-bottom: 10px;
+}
+
+.subtitle {
+    font-size: 18px;
+    color: #ccc;
+}
+
+.download-box {
+    background: rgba(255,255,255,0.1);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 15px;
+    padding: 25px;
+    margin-bottom: 40px;
+    text-decoration: none;
+    color: white;
+    display: block;
+    transition: all 0.3s ease;
+    text-align: center;
+}
+
+.download-box:hover {
+    background: rgba(255,255,255,0.15);
+    transform: translateY(-5px);
+}
+
+.download-img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-top: 15px;
+}
 </style>
 </head>
 <body>
 
-<div class="download-container">
-    <a href="https://mcpedl.org/uploads_files/05-08-2025/minecraft-1-21-100.apk" target="_blank">
-        <img src="https://uploadkon.ir/uploads/255b13_25Negar-1755081442153.png" alt="دانلود" class="download-image">
-    </a>
-    <div class="download-text">
-        ماینکرافت 1.21.100<br>
-        حجم: 303 مگابایت
+<div class="container">
+    <div class="header">
+        <div class="title">دانلود ماینکرافت بدراک</div>
+        <div class="subtitle">آخرین نسخه 1.21.100</div>
     </div>
+
+    <a href="#" class="download-box">
+        <div>برای دانلود کلیک کنید</div>
+        <img src="https://uploadkon.ir/uploads/c6f214_25Negar-1755168310356.png" alt="دانلود ماینکرافت" class="download-img">
+    </a>
 </div>
 
 <script>
-const itemUrls = [
-    // کلنگ‌ها
-    "https://minecraft.wiki/images/Iron_Pickaxe_JE3_BE2.png?8a6ea",
-    "https://minecraft.wiki/images/Copper_Pickaxe_JE1_BE1.png?3b91b&format=original",
-    "https://minecraft.wiki/images/Stone_Pickaxe_JE2_BE2.png?650b0&format=original",
-    "https://minecraft.wiki/w/File:Wooden_Pickaxe_JE3_BE3.png",
-    "https://minecraft.wiki/images/Diamond_Pickaxe_JE3_BE3.png?7409d&format=original",
-    "https://minecraft.wiki/images/Netherite_Pickaxe_JE3.png?36cb3&format=original",
-    "https://minecraft.wiki/w/Golden_Pickaxe",
-    // تبرها
-    "https://minecraft.wiki/images/Netherite_Axe_JE2.png?52d88&format=original",
-    "https://minecraft.wiki/images/Diamond_Axe_JE3_BE3.png?99125&format=original",
-    "https://minecraft.wiki/images/Iron_Axe_JE5_BE2.png?5b5c3&format=original",
-    "https://minecraft.wiki/images/Copper_Axe_JE1_BE1.png?014ea&format=original",
-    "https://minecraft.wiki/images/Stone_Axe_JE2_BE2.png?d33a8&format=original",
-    "https://minecraft.wiki/images/Wooden_Axe_JE2_BE2.png?ff0b9&format=original",
-    "https://minecraft.wiki/images/Golden_Axe_JE3_BE2.png?2e133&format=original",
-    // شمشیرها
-    "https://minecraft.wiki/images/Netherite_Sword_JE2_BE2.png?8e866&format=original",
-    "https://minecraft.wiki/images/Diamond_Sword_JE3_BE3.png?24296&format=original",
-    "https://minecraft.wiki/images/Copper_Sword_JE1_BE1.png?315d2&format=original",
-    "https://minecraft.wiki/images/Iron_Sword_JE2_BE2.png?62770&format=original",
-    "https://minecraft.wiki/images/Stone_Sword_JE2_BE2.png?d003e&format=original",
-    "https://minecraft.wiki/images/Wooden_Sword_JE2_BE2.png?065ee&format=original",
-    "https://minecraft.wiki/images/Golden_Sword_JE3_BE2.png?0ea76&format=original"
-];
+// تعداد آیتم‌های شناور
+const itemCount = 60;
+for (let i = 0; i < itemCount; i++) {
+    const el = document.createElement('img');
+    el.src = 'https://cdn-icons-png.flaticon.com/512/888/888879.png'; // آیکون نمونه (می‌تونی تغییر بدی)
+    el.className = 'floating-tool';
 
-function spawnItem() {
-    const img = document.createElement("img");
-    img.src = itemUrls[Math.floor(Math.random() * itemUrls.length)];
-    img.className = "floating-item";
-
-    // شروع از یک گوشه تصادفی
+    // موقعیت شروع و پایان تصادفی از همه جهات
     const side = Math.floor(Math.random() * 4);
     let startX, startY, endX, endY;
-    const screenW = window.innerWidth;
-    const screenH = window.innerHeight;
 
     if (side === 0) { // چپ
-        startX = -60;
-        startY = Math.random() * screenH;
-        endX = screenW + 60;
-        endY = Math.random() * screenH;
+        startX = '-50px';
+        startY = Math.random() * 100 + 'vh';
+        endX = 'calc(100vw + 50px)';
+        endY = Math.random() * 100 + 'vh';
     } else if (side === 1) { // راست
-        startX = screenW + 60;
-        startY = Math.random() * screenH;
-        endX = -60;
-        endY = Math.random() * screenH;
+        startX = 'calc(100vw + 50px)';
+        startY = Math.random() * 100 + 'vh';
+        endX = '-50px';
+        endY = Math.random() * 100 + 'vh';
     } else if (side === 2) { // بالا
-        startX = Math.random() * screenW;
-        startY = -60;
-        endX = Math.random() * screenW;
-        endY = screenH + 60;
+        startX = Math.random() * 100 + 'vw';
+        startY = '-50px';
+        endX = Math.random() * 100 + 'vw';
+        endY = 'calc(100vh + 50px)';
     } else { // پایین
-        startX = Math.random() * screenW;
-        startY = screenH + 60;
-        endX = Math.random() * screenW;
-        endY = -60;
+        startX = Math.random() * 100 + 'vw';
+        startY = 'calc(100vh + 50px)';
+        endX = Math.random() * 100 + 'vw';
+        endY = '-50px';
     }
 
-    img.style.left = startX + "px";
-    img.style.top = startY + "px";
-    document.body.appendChild(img);
+    el.style.setProperty('--start-x', startX);
+    el.style.setProperty('--start-y', startY);
+    el.style.setProperty('--end-x', endX);
+    el.style.setProperty('--end-y', endY);
+    el.style.animationDuration = (10 + Math.random() * 15) + 's';
 
-    const duration = 5000 + Math.random() * 4000;
-
-    img.animate([
-        { transform: `translate(${startX}px, ${startY}px)` },
-        { transform: `translate(${endX}px, ${endY}px)` }
-    ], {
-        duration: duration,
-        easing: "linear"
-    }).onfinish = () => {
-        img.remove();
-    };
+    document.body.appendChild(el);
 }
-
-setInterval(spawnItem, 200); // هر 0.2 ثانیه یک آیتم جدید
 </script>
 
 </body>
