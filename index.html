@@ -14,7 +14,7 @@ body {
     margin: 0;
     padding: 20px;
     min-height: 100vh;
-    overflow: hidden;
+    overflow-x: hidden;
     position: relative;
 }
 
@@ -25,14 +25,28 @@ body {
     opacity: 0.3;
     z-index: 1;
     pointer-events: none;
-    animation: float linear infinite;
+    background-size: cover;
+    background-position: center;
 }
 
-@keyframes float {
-    0% { transform: translate(var(--start-x), var(--start-y)) rotate(0deg); }
-    100% { transform: translate(var(--end-x), var(--end-y)) rotate(360deg); }
+/* مثال یک ابزار شناور */
+.tool-1 { animation: float1 15s linear infinite; background-image: url('https://uploadkon.ir/uploads/d0ba14_25Negar-1755168310356.png'); }
+.tool-2 { animation: float2 18s linear infinite; background-image: url('https://uploadkon.ir/uploads/d0ba14_25Negar-1755168310356.png'); }
+/* بقیه ابزارها هم مشابه اضافه می‌شوند تا tool-50 */
+
+/* نمونه انیمیشن‌ها */
+@keyframes float1 {
+    0% { transform: translateX(100vw) translateY(15vh) rotate(0deg); }
+    50% { transform: translateX(20vw) translateY(85vh) rotate(180deg); }
+    100% { transform: translateX(-50px) translateY(45vh) rotate(360deg); }
+}
+@keyframes float2 {
+    0% { transform: translateX(-50px) translateY(70vh) rotate(0deg); }
+    50% { transform: translateX(85vw) translateY(20vh) rotate(-180deg); }
+    100% { transform: translateX(100vw) translateY(90vh) rotate(-360deg); }
 }
 
+/* کانتینر اصلی */
 .container {
     max-width: 800px;
     margin: 0 auto;
@@ -76,70 +90,51 @@ body {
     transform: translateY(-5px);
 }
 
-.download-img {
-    max-width: 100%;
+.download-box img {
+    max-width: 150px;
+    margin-bottom: 15px;
+}
+
+.version-name {
+    font-size: 22px;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.download-btn {
+    background: #4CAF50;
+    color: white;
+    padding: 10px 20px;
     border-radius: 10px;
-    margin-top: 15px;
+    text-decoration: none;
+    display: inline-block;
+    transition: all 0.3s ease;
+}
+
+.download-btn:hover {
+    background: #45a049;
 }
 </style>
 </head>
 <body>
 
+<!-- ابزارهای شناور -->
+<div class="floating-tool tool-1"></div>
+<div class="floating-tool tool-2"></div>
+<!-- ادامه تا tool-50 -->
+
 <div class="container">
     <div class="header">
         <div class="title">دانلود ماینکرافت بدراک</div>
-        <div class="subtitle">آخرین نسخه 1.21.100</div>
+        <div class="subtitle">نسخه اصلی و امن</div>
     </div>
 
     <a href="#" class="download-box">
-        <div>برای دانلود کلیک کنید</div>
-        <img src="https://uploadkon.ir/uploads/c6f214_25Negar-1755168310356.png" alt="دانلود ماینکرافت" class="download-img">
+        <img src="https://uploadkon.ir/uploads/d0ba14_25Negar-1755168310356.png" alt="دانلود">
+        <div class="version-name">نسخه 1.20</div>
+        <div><span class="download-btn">دانلود کن</span></div>
     </a>
+
 </div>
-
-<script>
-// تعداد آیتم‌های شناور
-const itemCount = 60;
-for (let i = 0; i < itemCount; i++) {
-    const el = document.createElement('img');
-    el.src = 'https://cdn-icons-png.flaticon.com/512/888/888879.png'; // آیکون نمونه (می‌تونی تغییر بدی)
-    el.className = 'floating-tool';
-
-    // موقعیت شروع و پایان تصادفی از همه جهات
-    const side = Math.floor(Math.random() * 4);
-    let startX, startY, endX, endY;
-
-    if (side === 0) { // چپ
-        startX = '-50px';
-        startY = Math.random() * 100 + 'vh';
-        endX = 'calc(100vw + 50px)';
-        endY = Math.random() * 100 + 'vh';
-    } else if (side === 1) { // راست
-        startX = 'calc(100vw + 50px)';
-        startY = Math.random() * 100 + 'vh';
-        endX = '-50px';
-        endY = Math.random() * 100 + 'vh';
-    } else if (side === 2) { // بالا
-        startX = Math.random() * 100 + 'vw';
-        startY = '-50px';
-        endX = Math.random() * 100 + 'vw';
-        endY = 'calc(100vh + 50px)';
-    } else { // پایین
-        startX = Math.random() * 100 + 'vw';
-        startY = 'calc(100vh + 50px)';
-        endX = Math.random() * 100 + 'vw';
-        endY = '-50px';
-    }
-
-    el.style.setProperty('--start-x', startX);
-    el.style.setProperty('--start-y', startY);
-    el.style.setProperty('--end-x', endX);
-    el.style.setProperty('--end-y', endY);
-    el.style.animationDuration = (10 + Math.random() * 15) + 's';
-
-    document.body.appendChild(el);
-}
-</script>
-
 </body>
 </html>
