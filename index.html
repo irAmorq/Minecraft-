@@ -46,7 +46,7 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
 <!-- تعداد کلیک‌ها -->
 <div class="absolute top-8 text-center">
     <div class="text-4xl font-bold text-white">
-        <span id="clickCount">0</span> کیر توی👇
+        <span id="clickCount">0</span> کلیک 👇
     </div>
 </div>
 
@@ -55,10 +55,10 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
 
 <!-- دکمه‌ها کنار هم -->
 <div class="absolute bottom-28 flex justify-between w-80">
-    <!-- دکمه انتخاب کیر خور -->
+    <!-- دکمه انتخاب اسکین -->
     <button id="skinButton" class="text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 text-center border-4 border-blue-500 flex flex-col items-center justify-center" style="backdrop-filter: blur(15px); background: rgba(255, 255, 255, 0.1);">
-        <div class="text-lg">انتخاب کیر خور</div>
-        <div class="text-2xl mt-1">🤡</div>
+        <div class="text-lg">انتخاب اسکین</div>
+        <div class="text-2xl mt-1">🎭</div>
     </button>
 
     <!-- دکمه ارتباط با سازنده -->
@@ -68,10 +68,10 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
     </button>
 </div>
 
-<!-- پنجره انتخاب کیر خور -->
+<!-- پنجره انتخاب اسکین -->
 <div id="skinModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
   <div class="rounded-lg p-8 max-w-md w-full mx-4" style="background-color: #1a1d2e;">
-    <h2 class="text-2xl font-bold text-white mb-6 text-center">انتخاب کیر خور</h2>
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">انتخاب اسکین</h2>
     <div id="skinList">
       
       <!-- شاهین همستر -->
@@ -80,7 +80,7 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
           <img src="https://abrehamrahi.ir/o/public/6xuTOn4r/" alt="شاهین همستر" class="w-16 h-16 rounded-lg object-contain">
           <div class="text-white">
             <h3 class="text-lg font-bold">شاهین همستر</h3>
-            <p class="text-gray-300 text-sm">کیر خور اصلی</p>
+            <p class="text-gray-300 text-sm">اصلی</p>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
           <img src="https://s6.uplod.ir/i/01170/9qeoj8qnjyo9.png" alt="ملیکا" class="w-16 h-16 rounded-lg object-contain">
           <div class="text-white">
             <h3 class="text-lg font-bold">ملیکا</h3>
-            <p class="text-gray-300 text-sm">کیر خور معمولی</p>
+            <p class="text-gray-300 text-sm">معمولی</p>
           </div>
         </div>
       </div>
@@ -102,7 +102,7 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
           <img src="https://s6.uplod.ir/i/01170/kpm4m20g6218.png" alt="ممد پاور" class="w-16 h-16 rounded-lg object-contain">
           <div class="text-white">
             <h3 class="text-lg font-bold">ممد پاور</h3>
-            <p class="text-gray-300 text-sm">کیر خور معمولی</p>
+            <p class="text-gray-300 text-sm">معمولی</p>
           </div>
         </div>
       </div>
@@ -113,7 +113,7 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
           <img src="https://s6.uplod.ir/i/01170/m8grr37cragv.png" alt="شاهین" class="w-16 h-16 rounded-lg object-contain">
           <div class="text-white">
             <h3 class="text-lg font-bold">شاهین</h3>
-            <p class="text-gray-300 text-sm">کیر خور معمولی</p>
+            <p class="text-gray-300 text-sm">معمولی</p>
           </div>
         </div>
       </div>
@@ -136,7 +136,7 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
 </div>
 
 <script>
-let clickCount = 0;
+let clickCount = parseInt(localStorage.getItem("clickCount")) || 0;
 const coinImage = document.getElementById('coinImage');
 const clickCountElement = document.getElementById('clickCount');
 clickCountElement.textContent = clickCount;
@@ -145,6 +145,9 @@ clickCountElement.textContent = clickCount;
 function handleCoinClick(event) {
     clickCount++;
     clickCountElement.textContent = clickCount;
+
+    // ذخیره تعداد کلیک‌ها
+    localStorage.setItem("clickCount", clickCount);
 
     const rect = event.target.getBoundingClientRect();
     const x = event.clientX - rect.left;
@@ -159,7 +162,6 @@ function handleCoinClick(event) {
 
     setTimeout(() => { if (plusOne.parentNode) plusOne.parentNode.removeChild(plusOne); }, 1000);
 
-    // هر بار کلیک: عقب → جلو
     coinImage.style.transition = "transform 0.2s ease";
     coinImage.style.transform = "translate(-50%, -50%) scale(0.93)";
     setTimeout(() => {
@@ -168,11 +170,23 @@ function handleCoinClick(event) {
 }
 coinImage.addEventListener('click', handleCoinClick);
 
-// پنجره کیر خور
+// پنجره اسکین
 const skinModal = document.getElementById('skinModal');
 document.getElementById('skinButton').addEventListener('click', () => { skinModal.classList.remove('hidden'); });
 function closeSkinModal() { skinModal.classList.add('hidden'); }
-function selectSkin(img) { coinImage.src = img; closeSkinModal(); }
+function selectSkin(img) { 
+    coinImage.src = img; 
+    localStorage.setItem("selectedSkin", img); // ذخیره اسکین
+    closeSkinModal(); 
+}
+
+// وقتی صفحه لود میشه → داده‌ها برگردن
+window.addEventListener("load", () => {
+    const savedSkin = localStorage.getItem("selectedSkin");
+    if (savedSkin) coinImage.src = savedSkin;
+    const savedClicks = localStorage.getItem("clickCount");
+    if (savedClicks) clickCountElement.textContent = savedClicks;
+});
 
 // پنجره ارتباط با سازنده
 const contactModal = document.getElementById('contactModal');
@@ -181,4 +195,4 @@ function closeContactModal() { contactModal.classList.add('hidden'); }
 </script>
 
 </body>
-        </html>
+    </html>
