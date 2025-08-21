@@ -3,138 +3,182 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>دانلود ماینکرافت بدراک</title>
+<title>بازی کلیکر سکه</title>
+<script src="https://cdn.tailwindcss.com"></script>
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Lalezar&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Lalezar:wght@400&display=swap');
+body { font-family: 'Lalezar', cursive; overflow: hidden; }
 
-body {
-    font-family: 'Lalezar', Arial, sans-serif;
-    background: linear-gradient(135deg, #0d1421, #1a1a2e);
-    color: white;
-    margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    overflow-x: hidden;
-    position: relative;
+.coin {
+    cursor: pointer;
+    position: absolute;
+    top: 45%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(1);
+    width: 90vw;
+    max-width: 600px;
+    transition: transform 0.2s ease;
 }
 
-.floating-tool {
-    position: fixed;
-    width: 40px;
-    height: 40px;
-    opacity: 0.3;
-    z-index: 1;
+.coin:hover { transform: translate(-50%, -50%) scale(1.05); }
+
+.plus-one {
+    position: absolute;
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     pointer-events: none;
-    background-size: cover;
-    background-position: center;
+    animation: floatUp 1s ease-out forwards;
+    z-index: 1000;
+    direction: ltr;
 }
 
-/* مثال یک ابزار شناور */
-.tool-1 { animation: float1 15s linear infinite; background-image: url('https://uploadkon.ir/uploads/d0ba14_25Negar-1755168310356.png'); }
-.tool-2 { animation: float2 18s linear infinite; background-image: url('https://uploadkon.ir/uploads/d0ba14_25Negar-1755168310356.png'); }
-/* بقیه ابزارها هم مشابه اضافه می‌شوند تا tool-50 */
-
-/* نمونه انیمیشن‌ها */
-@keyframes float1 {
-    0% { transform: translateX(100vw) translateY(15vh) rotate(0deg); }
-    50% { transform: translateX(20vw) translateY(85vh) rotate(180deg); }
-    100% { transform: translateX(-50px) translateY(45vh) rotate(360deg); }
-}
-@keyframes float2 {
-    0% { transform: translateX(-50px) translateY(70vh) rotate(0deg); }
-    50% { transform: translateX(85vw) translateY(20vh) rotate(-180deg); }
-    100% { transform: translateX(100vw) translateY(90vh) rotate(-360deg); }
-}
-
-/* کانتینر اصلی */
-.container {
-    max-width: 800px;
-    margin: 0 auto;
-    position: relative;
-    z-index: 10;
-}
-
-.header {
-    text-align: center;
-    padding: 30px 0;
-    border-bottom: 3px solid #4CAF50;
-    margin-bottom: 40px;
-}
-
-.title {
-    font-size: 36px;
-    color: #4CAF50;
-    margin-bottom: 10px;
-}
-
-.subtitle {
-    font-size: 18px;
-    color: #ccc;
-}
-
-.download-box {
-    background: rgba(255,255,255,0.1);
-    border: 1px solid rgba(255,255,255,0.2);
-    border-radius: 15px;
-    padding: 25px;
-    margin-bottom: 40px;
-    text-decoration: none;
-    color: white;
-    display: block;
-    transition: all 0.3s ease;
-    text-align: center;
-}
-
-.download-box:hover {
-    background: rgba(255,255,255,0.15);
-    transform: translateY(-5px);
-}
-
-.download-box img {
-    max-width: 150px;
-    margin-bottom: 15px;
-}
-
-.version-name {
-    font-size: 22px;
-    color: #fff;
-    margin-bottom: 10px;
-}
-
-.download-btn {
-    background: #4CAF50;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 10px;
-    text-decoration: none;
-    display: inline-block;
-    transition: all 0.3s ease;
-}
-
-.download-btn:hover {
-    background: #45a049;
+@keyframes floatUp {
+    0% { opacity: 1; transform: translateY(0px) scale(1); }
+    50% { opacity: 1; transform: translateY(-30px) scale(1.2); }
+    100% { opacity: 0; transform: translateY(-60px) scale(0.8); }
 }
 </style>
 </head>
-<body>
+<body class="h-screen flex flex-col items-center justify-center relative" style="background-color: #1a1d2e;">
 
-<!-- ابزارهای شناور -->
-<div class="floating-tool tool-1"></div>
-<div class="floating-tool tool-2"></div>
-<!-- ادامه تا tool-50 -->
-
-<div class="container">
-    <div class="header">
-        <div class="title">دانلود ماینکرافت بدراک</div>
-        <div class="subtitle">نسخه اصلی و امن</div>
+<!-- تعداد کلیک‌ها -->
+<div class="absolute top-8 text-center">
+    <div class="text-4xl font-bold text-white">
+        <span id="clickCount">0</span> کیر توی👇
     </div>
-
-    <a href="#" class="download-box">
-        <img src="https://uploadkon.ir/uploads/d0ba14_25Negar-1755168310356.png" alt="دانلود">
-        <div class="version-name">نسخه 1.20</div>
-        <div><span class="download-btn">دانلود کن</span></div>
-    </a>
-
 </div>
+
+<!-- عکس سکه -->
+<img id="coinImage" class="coin" src="https://s6.uplod.ir/i/01170/tszfvbny0k3l.png" alt="سکه">
+
+<!-- دکمه‌ها کنار هم -->
+<div class="absolute bottom-28 flex justify-between w-80">
+    <!-- دکمه انتخاب کیر خور -->
+    <button id="skinButton" class="text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 text-center border-4 border-blue-500 flex flex-col items-center justify-center" style="backdrop-filter: blur(15px); background: rgba(255, 255, 255, 0.1);">
+        <div class="text-lg">انتخاب کیر خور</div>
+        <div class="text-2xl mt-1">🤡</div>
+    </button>
+
+    <!-- دکمه ارتباط با سازنده -->
+    <button id="contactButton" class="text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 text-center border-4 border-blue-500 flex flex-col items-center justify-center" style="backdrop-filter: blur(15px); background: rgba(255, 255, 255, 0.1);">
+        <div class="text-lg">ارتباط با سازنده</div>
+        <div class="text-2xl mt-1">👨‍💻</div>
+    </button>
+</div>
+
+<!-- پنجره انتخاب کیر خور -->
+<div id="skinModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+  <div class="rounded-lg p-8 max-w-md w-full mx-4" style="background-color: #1a1d2e;">
+    <h2 class="text-2xl font-bold text-white mb-6 text-center">انتخاب کیر خور</h2>
+    <div id="skinList">
+      
+      <!-- شاهین همستر -->
+      <div class="skin-item bg-gray-700 rounded-lg p-4 mb-4 hover:border-blue-500 cursor-pointer transition-all duration-100" onclick="selectSkin('https://abrehamrahi.ir/o/public/6xuTOn4r/')">
+        <div class="flex items-center space-x-4">
+          <img src="https://abrehamrahi.ir/o/public/6xuTOn4r/" alt="شاهین همستر" class="w-16 h-16 rounded-lg object-contain">
+          <div class="text-white">
+            <h3 class="text-lg font-bold">شاهین همستر</h3>
+            <p class="text-gray-300 text-sm">کیر خور اصلی</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ملیکا -->
+      <div class="skin-item bg-gray-700 rounded-lg p-4 mb-4 hover:border-blue-500 cursor-pointer transition-all duration-100" onclick="selectSkin('https://s6.uplod.ir/i/01170/9qeoj8qnjyo9.png')">
+        <div class="flex items-center space-x-4">
+          <img src="https://s6.uplod.ir/i/01170/9qeoj8qnjyo9.png" alt="ملیکا" class="w-16 h-16 rounded-lg object-contain">
+          <div class="text-white">
+            <h3 class="text-lg font-bold">ملیکا</h3>
+            <p class="text-gray-300 text-sm">کیر خور معمولی</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- ممد پاور -->
+      <div class="skin-item bg-gray-700 rounded-lg p-4 mb-4 hover:border-blue-500 cursor-pointer transition-all duration-100" onclick="selectSkin('https://s6.uplod.ir/i/01170/kpm4m20g6218.png')">
+        <div class="flex items-center space-x-4">
+          <img src="https://s6.uplod.ir/i/01170/kpm4m20g6218.png" alt="ممد پاور" class="w-16 h-16 rounded-lg object-contain">
+          <div class="text-white">
+            <h3 class="text-lg font-bold">ممد پاور</h3>
+            <p class="text-gray-300 text-sm">کیر خور معمولی</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- شاهین -->
+      <div class="skin-item bg-gray-700 rounded-lg p-4 mb-4 hover:border-blue-500 cursor-pointer transition-all duration-100" onclick="selectSkin('https://s6.uplod.ir/i/01170/m8grr37cragv.png')">
+        <div class="flex items-center space-x-4">
+          <img src="https://s6.uplod.ir/i/01170/m8grr37cragv.png" alt="شاهین" class="w-16 h-16 rounded-lg object-contain">
+          <div class="text-white">
+            <h3 class="text-lg font-bold">شاهین</h3>
+            <p class="text-gray-300 text-sm">کیر خور معمولی</p>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <button onclick="closeSkinModal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg mt-4">بستن</button>
+  </div>
+</div>
+
+<!-- پنجره ارتباط با سازنده -->
+<div id="contactModal" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 hidden">
+    <div class="rounded-lg p-8 max-w-md w-full mx-4 text-center" style="background-color: #1a1d2e;">
+        <div class="text-white text-xl mb-6">(تبلیغات نداریم)</div>
+        <a href="https://t.me/llRANIl" target="_blank" class="flex items-center justify-center bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition-all duration-200">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg" alt="تلگرام" class="w-6 h-6 ml-2">
+            <span>تلگرام</span>
+        </a>
+        <button onclick="closeContactModal()" class="w-full bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg mt-6">بستن</button>
+    </div>
+</div>
+
+<script>
+let clickCount = 0;
+const coinImage = document.getElementById('coinImage');
+const clickCountElement = document.getElementById('clickCount');
+clickCountElement.textContent = clickCount;
+
+// کلیک روی سکه
+function handleCoinClick(event) {
+    clickCount++;
+    clickCountElement.textContent = clickCount;
+
+    const rect = event.target.getBoundingClientRect();
+    const x = event.clientX - rect.left;
+    const y = event.clientY - rect.top;
+
+    const plusOne = document.createElement('div');
+    plusOne.textContent = '+1';
+    plusOne.className = 'plus-one';
+    plusOne.style.left = (rect.left + x - 15) + 'px';
+    plusOne.style.top = (rect.top + y - 15) + 'px';
+    document.body.appendChild(plusOne);
+
+    setTimeout(() => { if (plusOne.parentNode) plusOne.parentNode.removeChild(plusOne); }, 1000);
+
+    // هر بار کلیک: عقب → جلو
+    coinImage.style.transition = "transform 0.2s ease";
+    coinImage.style.transform = "translate(-50%, -50%) scale(0.93)";
+    setTimeout(() => {
+        coinImage.style.transform = "translate(-50%, -50%) scale(1)";
+    }, 200);
+}
+coinImage.addEventListener('click', handleCoinClick);
+
+// پنجره کیر خور
+const skinModal = document.getElementById('skinModal');
+document.getElementById('skinButton').addEventListener('click', () => { skinModal.classList.remove('hidden'); });
+function closeSkinModal() { skinModal.classList.add('hidden'); }
+function selectSkin(img) { coinImage.src = img; closeSkinModal(); }
+
+// پنجره ارتباط با سازنده
+const contactModal = document.getElementById('contactModal');
+document.getElementById('contactButton').addEventListener('click', () => { contactModal.classList.remove('hidden'); });
+function closeContactModal() { contactModal.classList.add('hidden'); }
+</script>
+
 </body>
-</html>
+        </html>
