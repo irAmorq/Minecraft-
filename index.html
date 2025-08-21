@@ -136,45 +136,6 @@ body { font-family: 'Lalezar', cursive; overflow: hidden; }
 </div>
 
 <script>
-let clickCount = 0;
-const coinImage = document.getElementById('coinImage');
-const clickCountElement = document.getElementById('clickCount');
-clickCountElement.textContent = clickCount;
-
-// کلیک روی سکه
-function handleCoinClick(event) {
-    clickCount++;
-    clickCountElement.textContent = clickCount;
-
-    const rect = event.target.getBoundingClientRect();
-    const x = event.clientX - rect.left;
-    const y = event.clientY - rect.top;
-
-    const plusOne = document.createElement('div');
-    plusOne.textContent = '+1';
-    plusOne.className = 'plus-one';
-    plusOne.style.left = (rect.left + x - 15) + 'px';
-    plusOne.style.top = (rect.top + y - 15) + 'px';
-    document.body.appendChild(plusOne);
-
-    setTimeout(() => { if (plusOne.parentNode) plusOne.parentNode.removeChild(plusOne); }, 1000);
-
-    // هر بار کلیک: عقب → جلو
-    coinImage.style.transition = "transform 0.2s ease";
-    coinImage.style.transform = "translate(-50%, -50%) scale(0.93)";
-    setTimeout(() => {
-        coinImage.style.transform = "translate(-50%, -50%) scale(1)";
-    }, 200);
-}
-coinImage.addEventListener('click', handleCoinClick);
-
-// پنجره کیر خور
-const skinModal = document.getElementById('skinModal');
-document.getElementById('skinButton').addEventListener('click', () => { skinModal.classList.remove('hidden'); });
-function closeSkinModal() { skinModal.classList.add('hidden'); }
-function selectSkin(img) { coinImage.src = img; closeSkinModal(); }
-
-<script>
 let clickCount = parseInt(localStorage.getItem("clickCount")) || 0;
 const coinImage = document.getElementById('coinImage');
 const clickCountElement = document.getElementById('clickCount');
@@ -208,6 +169,16 @@ function handleCoinClick(event) {
     }, 200);
 }
 coinImage.addEventListener('click', handleCoinClick);
+
+// پنجره کیر خور
+const skinModal = document.getElementById('skinModal');
+document.getElementById('skinButton').addEventListener('click', () => { skinModal.classList.remove('hidden'); });
+function closeSkinModal() { skinModal.classList.add('hidden'); }
+function selectSkin(img) { 
+    coinImage.src = img; 
+    localStorage.setItem("selectedSkin", img); // ذخیره اسکین
+    closeSkinModal(); 
+}
 
 // وقتی صفحه لود میشه → داده‌ها برگردن
 window.addEventListener("load", () => {
